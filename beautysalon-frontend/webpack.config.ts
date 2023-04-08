@@ -32,7 +32,7 @@ const config: Configuration = {
   module: {
     rules: [
       {
-        test: /\.tsx?$/,
+        test: /\.(ts|tsx|js|jsx)?$/,
         loader: 'babel-loader',
         options: {
           presets: [
