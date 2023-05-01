@@ -1,9 +1,12 @@
+/** @jsx jsx */
+import { css, jsx } from '@emotion/react';
 import React from 'react';
+import ShopInfo from './pages/shop/shopInfo';
 
 function App() {
   return (
     <div className="App">
-      <div> 테스트 커밋.</div>
+      <ShopInfo />
     </div>
   );
 }
