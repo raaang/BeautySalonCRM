@@ -1,8 +1,6 @@
 /** @jsx jsx */
-import { jsx } from '@emotion/react';
-
+import { css, jsx } from '@emotion/react';
 import React from 'react';
-import { selectStyle } from './select.styles';
 
 interface SelectProps {
   placeholder: string;
@@ -23,5 +21,19 @@ function Select(props: SelectProps) {
     </select>
   );
 }
+
+const selectStyle = css`
+  height: 33px;
+  padding: 8px 12px;
+
+  background: white;
+  border-radius: 10px;
+  border: none;
+  outline: none;
+
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 17px;
+`;
 
 export default Select;

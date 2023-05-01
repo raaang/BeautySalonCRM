@@ -3,34 +3,31 @@ import { css, jsx } from '@emotion/react';
 import React from 'react';
 import Text from '../text/text';
 
-interface ModalProps {
-  title: string;
-  body: string | undefined;
+interface ModalInputProps {
+  title: string | undefined;
+  children: React.ReactChild;
+  nextBtnText: string;
   chngShowing: () => void;
+  nextBtn: () => void;
 }
 
-export interface modalState {
-  title: string;
-  body: string;
-}
-
-function Modal(props: ModalProps) {
-  const { title, body, chngShowing } = props;
+function ModalInput(props: ModalInputProps) {
+  const { title, children, nextBtnText, chngShowing, nextBtn } = props;
 
   return (
     <div>
       <div css={modalOverlayStyle} onClick={chngShowing}></div>
       <div css={modalWrapperStyle}>
         <div css={modalStyle}>
-          <Text value={title} type="modal" />
-          <p>{body}</p>
+          {title ? <Text value={title} type="modal" /> : null}
+          {children}
 
           <div css={btnContainerStyle}>
-            <button css={btnStyle} onClick={chngShowing}>
-              <Text value="취소" type="modalBtn" />
-            </button>
             <button css={btnStyle}>
-              <Text value="확인" type="modalBtn" />
+              <Text value={'취소'} type="btn" />
+            </button>
+            <button css={[btnStyle, nextBtnStyle]} onClick={nextBtn}>
+              <Text value={nextBtnText} type="btn" />
             </button>
           </div>
         </div>
@@ -62,9 +59,9 @@ const modalStyle = css`
   min-height: 237px;
   padding: 40px;
 
-  background: #ffffff;
-  border: 5px solid #aebee5;
-  border-radius: 50px;
+  background: #faece3;
+  border: 5px solid #e0f8d1;
+  border-radius: 30px;
   box-sizing: border-box;
 
   display: flex;
@@ -80,17 +77,27 @@ const titleStyle = css`
 `;
 
 const btnContainerStyle = css`
-  width: 100%;
+  margin-top: 40px;
   display: flex;
-  justify-content: end;
-  gap: 14px;
+  justify-content: center;
+  gap: 30px;
 `;
 
 const btnStyle = css`
-  padding: 10px 20px;
-  background: rgba(255, 145, 100, 0.6);
+  width: 175px;
+  height: 33px;
+
+  background: white;
   border: none;
-  border-radius: 50px;
+  border-radius: 10px;
+
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 19px;
 `;
 
-export default Modal;
+const nextBtnStyle = css`
+  background: #f2f7dd;
+`;
+
+export default ModalInput;

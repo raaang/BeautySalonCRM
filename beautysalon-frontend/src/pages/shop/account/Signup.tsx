@@ -7,6 +7,7 @@ import Input from '../../../components/common/input/input';
 import InputContainer, { inputContainerStyle } from '../../../components/inputContainer/inputContainer';
 import Modal from '../../../components/common/modal/modal';
 import TimeSelect from '../../../components/common/select/TimeSelect';
+import Text from '../../../components/common/text/text';
 
 function Signup() {
   const [modalOpen, setModalOpen] = useState<boolean>(false);
@@ -24,7 +25,7 @@ function Signup() {
           })}
 
           <button css={btnStyle} onClick={() => setModalOpen(!modalOpen)}>
-            샵 등록하기
+            <Text type="btn" value={'샵 등록하기'} />
           </button>
         </div>
       </InputContainer>

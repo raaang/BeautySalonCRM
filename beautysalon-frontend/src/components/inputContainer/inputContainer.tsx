@@ -1,9 +1,10 @@
 /** @jsx jsx */
 import { css, jsx } from '@emotion/react';
 import React from 'react';
+import Text from '../common/text/text';
 
 interface InputContainerProps {
-  title: string;
+  title: string | undefined;
   children: React.ReactChild;
 }
 
@@ -12,7 +13,7 @@ function InputContainer(props: InputContainerProps) {
 
   return (
     <div css={containerStyle}>
-      <h1 css={titleStyle}>{title}</h1>
+      {title ? <Text type="title" value={title} /> : null}
 
       {children}
     </div>

@@ -1,6 +1,7 @@
 /** @jsx jsx */
 import { css, jsx } from '@emotion/react';
 import React from 'react';
+import Text from '../text/text';
 
 interface InputProps {
   inputType: 'small' | 'big';
@@ -15,9 +16,9 @@ function Input(props: InputProps) {
 
   return (
     <div css={continerStyle}>
-      <p css={inputTitleStyle}>{title}</p>
-      <label htmlFor="input" css={[labelStyle, typeStyle]}>
-        <input id="input" css={inputStyle} type={'text'} placeholder={placeholder} />
+			<Text value={title} type='label' />
+      <label htmlFor='input' css={[labelStyle, typeStyle]}>
+        <input id='input' css={inputStyle} type={'text'} placeholder={placeholder} />
       </label>
     </div>
   );
@@ -28,14 +29,6 @@ const continerStyle = css`
   display: flex;
   justify-content: space-between;
   align-items: center;
-`;
-
-const inputTitleStyle = css`
-  height: 19px;
-  margin: 0;
-  font-weight: 400;
-  font-size: 16px;
-  line-height: 19px;
 `;
 
 const smallLabelStyle = css`

@@ -1,6 +1,7 @@
 /** @jsx jsx */
 import { css, jsx } from '@emotion/react';
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 import { shopLoginConfig } from '../../../config/shopAccountConfig';
 import Input from '../../../components/common/input/input';
@@ -8,15 +9,15 @@ import InputContainer, {
   inputContainerStyle,
   smallInputContainerStyle,
 } from '../../../components/inputContainer/inputContainer';
-import Modal from '../../../components/common/modal/modal';
+import Modal, { modalState } from '../../../components/common/modal/modal';
+import RegisterShopEmp from '../../../components/shop/registerShopEmp';
+import Text from '../../../components/common/text/text';
 
 function Login() {
-  interface modalState {
-    title: string;
-    body: string;
-  }
+  const navigate = useNavigate();
   const [modalState, setModalState] = useState<modalState>({ title: '', body: '' });
   const [modalOpen, setModalOpen] = useState<boolean>(false);
+  const [open, setOpen] = useState<boolean>(false);
 
   const onClickModal = (btn: string) => {
     setModalOpen(!modalOpen);
@@ -36,13 +37,19 @@ function Login() {
 
           <div>
             <button css={[btnStyle, loginBtnStyle]} onClick={() => onClickModal('login')}>
-              로그인
+              <Text type="btn" value={'로그인'} />
             </button>
 
             <div css={btnContainerStyle}>
-              <button css={btnStyle}>회원가입</button>
-              <button css={[btnStyle, findBtnStyle]}>아이디</button>
-              <button css={[btnStyle, findBtnStyle]}>비밀번호 찾기</button>
+              <button css={btnStyle} onClick={() => navigate('/account/signup')}>
+                <Text type="btn" value={'회원가입'} />
+              </button>
+              <button css={[btnStyle, findBtnStyle]} onClick={() => setOpen(!open)}>
+                <Text value={'아이디'} />
+              </button>
+              <button css={[btnStyle, findBtnStyle]}>
+                <Text value={'비밀번호 찾기'} />
+              </button>
             </div>
           </div>
         </div>
@@ -51,6 +58,8 @@ function Login() {
       {modalOpen ? (
         <Modal title={modalState.title} body={modalState.body} chngShowing={() => setModalOpen(!modalOpen)} />
       ) : null}
+
+      {open ? <RegisterShopEmp /> : null}
     </div>
   );
 }
