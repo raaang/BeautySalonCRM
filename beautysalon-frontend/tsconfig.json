@@ -5,6 +5,7 @@
     "lib": ["ES2020", "DOM"],
     "jsx": "react-jsx",
     "jsxImportSource": "@emotion/react",
+    "types": ["@emotion/react/types/css-prop"],
     "module": "esnext",
     "moduleResolution": "Node",
     "target": "es5",
