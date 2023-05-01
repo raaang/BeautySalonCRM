@@ -58,6 +58,17 @@ const config: Configuration = {
         test: /\.css?$/,
         use: ['style-loader', 'css-loader'],
       },
+      {
+        test: /\.(png|jpg)$/,
+        use: [
+          {
+            loader: 'file-loader',
+            options: {
+              name: '[name].[ext]',
+            },
+          },
+        ],
+      },
     ],
   },
   plugins: [
