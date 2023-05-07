@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.salon.beauty.model.mapper.shop.ShopSignInMapper">
+    <select id="getUserById" parameterType="String" resultType="com.salon.beauty.security.UserDetailsImpl">
+        SELECT shop_login_id, shop_password FROM shop WHERE shop_login_id=#{shop_login_id}
+    </select>
+</mapper>
