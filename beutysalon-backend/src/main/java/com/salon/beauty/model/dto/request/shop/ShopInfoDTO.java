@@ -1,4 +1,4 @@
-package com.salon.beauty.model.dto.shop;
+package com.salon.beauty.model.dto.request.shop;
 
 import lombok.Builder;
 import lombok.Getter;
