@@ -5,13 +5,14 @@ import React from 'react';
 interface SelectProps {
   placeholder: string;
   options: string[];
+	value: any;
 }
 
 function Select(props: SelectProps) {
-  const { placeholder, options } = props;
+  const { placeholder, options, value } = props;
 
   return (
-    <select css={selectStyle} name={placeholder} id={placeholder}>
+    <select css={selectStyle} name={placeholder} id={placeholder} defaultValue={value}>
       <option value="">{placeholder}</option>
       {options.map((item, idx) => (
         <option key={idx} value={`${item}`}>
