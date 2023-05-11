@@ -24,7 +24,7 @@ function ArticleHeader(props: any) {
         >
           {props.title}
         </h3>
-        <Button btnName={props.btnName}></Button>
+        <Button btnName={props.btnName} btnClick={props.btnClick}></Button>
       </div>
       <hr
         css={css`

@@ -1,7 +1,8 @@
 /** @jsx jsx */
 import { css, jsx } from '@emotion/react';
 import React, { useState } from 'react';
-// import InputContainer, { inputContainerStyle, smallInputContainerStyle } from '../inputContainer/inputContainer';
+import { DatePicker } from 'antd';
+
 import { registerShopEmpConfig } from '../../config/shopAccountConfig';
 import Input from '../common/input/input';
 import ModalInput from '../common/modal/modalInput';
@@ -9,32 +10,78 @@ import Select from '../common/select/select';
 import Modal, { modalState } from '../common/modal/modal';
 import Text from '../common/text/text';
 
-function RegisterShopEmp() {
+interface ShopEmpProps {
+  isModify: boolean; // 직원 정보 등록/수정 구분
+  shopEmpData: ShopInfoProps; // 직원 정보
+}
+
+type ShopInfoProps = {
+  [index: string]: string;
+  shop_name: string;
+  shop_emp_status: string;
+  shop_emp_date_start: string;
+  shop_emp_date_finish: string;
+  shop_emp_sex: string;
+  shop_emp_name: string;
+  shop_emp_phone: string;
+  shop_emp_address: string;
+  shop_emp_memo: string;
+};
+
+function RegisterShopEmp(props: ShopEmpProps) {
+  const { isModify, shopEmpData } = props;
+
   const [open, setOpen] = useState<boolean>(true); // 직원 등록 모달
   const [modalOpen, setModalOpen] = useState<boolean>(false); // 직원 등록 완료 확인 모달
   const [modalState, setModalState] = useState<modalState>({ title: '', body: '' });
 
   const onClickNext = () => {
     setModalOpen(!modalOpen);
-    setModalState({ title: '직원이 등록되었습니다.', body: '' });
+    setModalState({ title: `직원 정보가 ${isModify ? '수정' : '등록'}되었습니다.`, body: '' });
   };
+
+  // useEffect(() => {
+  // 	console.log(shopEmpData);
+  // }, [shopEmpData]);
 
   return open ? (
     <div>
       <ModalInput
         title={undefined}
-        nextBtnText={'직원 등록하기'}
+        nextBtnText={`직원 ${isModify ? '수정' : '등록'}하기`}
         chngShowing={() => setOpen(!open)}
         nextBtn={() => onClickNext()}
+        thirdBtnText={null}
+        thirdBtn={() => null}
       >
         <div css={inputContainerStyle}>
           {registerShopEmpConfig.map((item, idx) => {
+            console.log([item.id, shopEmpData[item.id]]);
+
             if (item.type === 'select') {
               return (
                 <div css={inputItemStyle} key={idx}>
                   <Text value={item.title} type="label" />
                   <div css={selectStyle}>
-                    <Select placeholder={item.placeholder!} options={item.optionList!} />
+                    <Select placeholder={item.placeholder!} options={item.optionList!} value={shopEmpData[item.id]} />
+
+                    {shopEmpData[item.id]?.length > 0 ? (
+                      <div css={datePickerStyle}>
+                        <DatePicker
+                          placeholder={'입사일'}
+                          onChange={(date, dateString) => {
+                            console.log(dateString);
+                          }}
+                        />
+                        <span>~</span>
+                        <DatePicker
+                          placeholder={'휴직/퇴직일'}
+                          onChange={(date, dateString) => {
+                            console.log(dateString);
+                          }}
+                        />
+                      </div>
+                    ) : null}
                   </div>
                 </div>
               );
@@ -45,7 +92,12 @@ function RegisterShopEmp() {
                   <div css={selectStyle}>
                     <div css={radioItemStyle}>
                       <label>
-                        <input name="genter" type={'radio'} value="male" checked />
+                        <input
+                          name="genter"
+                          type={'radio'}
+                          value="male"
+                          defaultChecked={shopEmpData[item.id] === 'male'}
+                        />
                         <span css={radioTextStyle}>
                           <Text value={item.placeholderList![0]} />
                         </span>
@@ -54,7 +106,12 @@ function RegisterShopEmp() {
 
                     <div css={radioItemStyle}>
                       <label>
-                        <input name="genter" type={'radio'} value="female" />
+                        <input
+                          name="genter"
+                          type={'radio'}
+                          value="female"
+                          defaultChecked={shopEmpData[item.id] === 'female'}
+                        />
                         <span css={radioTextStyle}>
                           <Text value={item.placeholderList![1]} />
                         </span>
@@ -67,11 +124,23 @@ function RegisterShopEmp() {
               return (
                 <div css={textareaItemStyle} key={idx}>
                   <Text value={item.title} type="label" />
-                  <textarea css={textareaStyle} placeholder={item.placeholder}></textarea>
+                  <textarea
+                    css={textareaStyle}
+                    placeholder={item.placeholder}
+                    defaultValue={shopEmpData[item.id]}
+                  ></textarea>
                 </div>
               );
             } else {
-              return <Input key={idx} inputType={'big'} title={item.title} placeholder={item.placeholder!} />;
+              return (
+                <Input
+                  key={idx}
+                  inputType={'big'}
+                  title={item.title}
+                  placeholder={item.placeholder!}
+                  value={shopEmpData[item.id]}
+                />
+              );
             }
           })}
         </div>
@@ -107,6 +176,13 @@ const selectStyle = css`
   display: flex;
 `;
 
+const datePickerStyle = css`
+  margin-left: 20px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+`;
+
 const radioItemStyle = css`
   width: 50%;
 
@@ -119,6 +195,7 @@ const radioItemStyle = css`
     appearance: none;
     width: 33px;
     height: 33px;
+    margin: 0;
     padding: 8px;
 
     background: white;

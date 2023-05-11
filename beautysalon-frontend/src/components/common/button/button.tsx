@@ -6,6 +6,7 @@ import { MAUVE2 } from '../../../constants/color';
 function Button(props: any) {
   return (
     <button
+			onClick={props.btnClick}
       css={css`
         width: 100px;
         height: 30px;
