@@ -3,7 +3,7 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.salon.beauty.model.mapper.shop.ShopSignInMapper">
-    <select id="getUserById" parameterType="String" resultType="com.salon.beauty.security.UserDetailsImpl">
+    <select id="getUserById" parameterType="String" resultType="com.salon.beauty.util.security.UserDetailsImpl">
         SELECT shop_login_id, shop_password FROM shop WHERE shop_login_id=#{shop_login_id}
     </select>
 </mapper>
