@@ -13,6 +13,10 @@ import lombok.ToString;
 @Setter
 @ToString
 public class ShopSignInResponseDTO {
+
+    // 샵 로그인 아이디
     private String shop_login_id;
+
+    // 샵 로그인 비밀번호
     private String accessToken;
 }

@@ -20,8 +20,6 @@ public class ShopSignInServiceImpl implements ShopSignInService {
     private final JwtAuthenticationProvider jwtAuthenticationProvider;
     private final AuthenticationManager authenticationManager;
 
-
-
     @Override
     public ShopSignInResponseDTO signIn(ShopSignInRequestDTO shopSignInRequestDTO) throws UsernameNotFoundException {
         Authentication authentication = authenticationManager.authenticate(
