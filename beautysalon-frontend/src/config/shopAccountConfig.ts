@@ -36,3 +36,22 @@ export const registerShopEmpConfig = [
   { id: 'shop_emp_address', title: '주소', type: 'text', placeholder: '직원 주소를 입력해주세요.' },
   { id: 'shop_emp_memo', title: '메모', type: 'textarea', placeholder: '직원 메모를 입력해주세요.' },
 ];
+
+// 스타일 등록
+export const registerShopStyleConfig = [
+  {
+    id: 'shop_style_big',
+    title: '스타일 대분류',
+    type: 'select',
+    placeholder: '스타일 대분류',
+    optionList: ['파마', '매직'],
+  },
+  {
+    id: 'shop_style_middle',
+    title: '스타일 중분류',
+    type: 'select',
+    placeholder: '스타일 중분류',
+    optionList: ['남자', '여자'],
+  },
+  { id: 'shop_style_small', title: '스타일 소분류', type: 'text', placeholder: '스타일 소분류' },
+];
