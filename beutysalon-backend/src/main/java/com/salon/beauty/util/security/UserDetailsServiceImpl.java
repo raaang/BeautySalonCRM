@@ -22,7 +22,7 @@ public class UserDetailsServiceImpl implements UserDetailsService {
         try {
             users = sqlSession.getMapper(ShopSignInMapper.class).getUserById(shop_login_id);
         } catch (SQLException e) {
-            throw new UsernameNotFoundException("회원 정보가 존재하지 않습니다");
+            throw new UsernameNotFoundException("아이디 혹은 비밀번호를 잘못 입력하였습니다.");
         }
         return new UserDetailsImpl(users);
     }
