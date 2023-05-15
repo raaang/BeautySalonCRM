@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.salon.beauty.model.mapper.shop.ShopInfoMapper">
+    <select id="getShopInfo" parameterType="String" resultType="ShopInfoResponseDTO">
+        SELECT shop_login_id, shop_name, shop_phone, shop_ceo, shop_ceo_phone, point_accumulation_rate,  point_accumulation_condition
+        FROM shop
+        WHERE shop_login_id=#{shop_login_id}
+    </select>
+</mapper>

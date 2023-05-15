@@ -4,7 +4,7 @@
 
 <mapper namespace="com.salon.beauty.model.mapper.shop.ShopSignUpMapper">
     <insert id="signup" parameterType="ShopSignUpRequestDTO">
-        insert into shop(shop_login_id, shop_password, shop_name, shop_phone, shop_ceo, shop_ceo_phone)
-        values(#{shop_login_id}, #{shop_password}, #{shop_name}, #{shop_phone}, #{shop_ceo}, #{shop_ceo_phone})
+        insert into shop(shop_login_id, shop_password, shop_name, shop_phone, shop_ceo, shop_ceo_phone,  point_accumulation_rate, point_accumulation_condition)
+        values(#{shop_login_id}, #{shop_password}, #{shop_name}, #{shop_phone}, #{shop_ceo}, #{shop_ceo_phone}, 0, "")
     </insert>
 </mapper>
