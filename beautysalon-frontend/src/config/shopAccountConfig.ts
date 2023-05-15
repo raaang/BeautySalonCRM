@@ -36,3 +36,45 @@ export const registerShopEmpConfig = [
   { id: 'shop_emp_address', title: '주소', type: 'text', placeholder: '직원 주소를 입력해주세요.' },
   { id: 'shop_emp_memo', title: '메모', type: 'textarea', placeholder: '직원 메모를 입력해주세요.' },
 ];
+
+// 샵 정보
+export const shopInfoConfig = [
+  { id: 'shop_name', title: '샵 이름', type: 'text', placeholder: '스타일 샵' },
+  { id: 'shop_id', title: '아이디', type: 'text', placeholder: 'style111' },
+  { id: 'shop_pw', title: '비밀번호', type: 'text', placeholder: '*****' },
+  {
+    id: 'shop_time',
+    title: '샵 영업시간',
+    type: 'select',
+    placeholderList: ['11시', '00분', '20시', '00분'],
+  },
+  { id: 'shop_phone', title: '대표 번호', type: 'number', placeholder: '021231234' },
+  { id: 'shop_ceo', title: '대표자', type: 'text', placeholder: '오인주' },
+  { id: 'shop_ceo_phone', title: '대표자 번호', type: 'number', placeholder: '01012341234' },
+  { id: 'shop_pointPer', title: '포인트 적립율', type: 'number', placeholder: '5' },
+  {
+    id: 'shop_pointPer',
+    title: '포인트 적립조건',
+    type: 'textarea',
+    placeholder: '포인트 사용금액을 제외한 결제금액의 5% 적립',
+  },
+];
+
+// 스타일 등록
+export const registerShopStyleConfig = [
+  {
+    id: 'shop_style_big',
+    title: '스타일 대분류',
+    type: 'select',
+    placeholder: '스타일 대분류',
+    optionList: ['파마', '매직'],
+  },
+  {
+    id: 'shop_style_middle',
+    title: '스타일 중분류',
+    type: 'select',
+    placeholder: '스타일 중분류',
+    optionList: ['남자', '여자'],
+  },
+  { id: 'shop_style_small', title: '스타일 소분류', type: 'text', placeholder: '스타일 소분류' },
+];
