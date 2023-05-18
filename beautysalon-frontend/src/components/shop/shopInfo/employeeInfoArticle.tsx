@@ -3,6 +3,7 @@ import { css, jsx } from '@emotion/react';
 import Table from '../../common/table';
 import React, { useState } from 'react';
 import ArticleHeader from '../../layout/articleHeader';
+import RegisterShopEmp from '../registerShopEmp';
 
 function EmployeeInfoArticle() {
   const [rowData] = useState([
@@ -175,6 +176,33 @@ function EmployeeInfoArticle() {
       편집: '편집',
     },
   ]);
+
+  const shopEmpRegisterData = {
+    shop_name: '',
+    shop_emp_status: '',
+    shop_emp_date_start: '',
+    shop_emp_date_finish: '',
+    shop_emp_sex: '',
+    shop_emp_name: '',
+    shop_emp_phone: '',
+    shop_emp_address: '',
+    shop_emp_memo: '',
+  };
+
+  const shopEmpModifyData = {
+    shop_name: '스타일 샵',
+    shop_emp_status: '재직',
+    shop_emp_date_start: '2023-05-01',
+    shop_emp_date_finish: '2023-05-07',
+    shop_emp_sex: 'female',
+    shop_emp_name: '홍길동0',
+    shop_emp_phone: '010-1234-5678',
+    shop_emp_address: '서울특별시 광진구 뚝섬로 1234',
+    shop_emp_memo: '메모사항',
+  };
+
+  const [open, setOpen] = useState<boolean>(false); // 직원 등록 모달
+
   const [columnDefs] = useState([
     { field: '이름', flex: 0.4 },
     { field: '휴대폰', flex: 0.4 },
@@ -183,6 +211,7 @@ function EmployeeInfoArticle() {
     { field: '메모 사항', flex: 0.7 },
     { field: '편집', flex: 0.3 },
   ]);
+
   return (
     <article
       css={css`
@@ -191,8 +220,10 @@ function EmployeeInfoArticle() {
         margin-bottom: 250px;
       `}
     >
-      <ArticleHeader title="직원 정보" btnName="직원 등록"></ArticleHeader>
+      <ArticleHeader title="직원 정보" btnName="직원 등록" btnClick={() => setOpen(!open)}></ArticleHeader>
       <Table row={rowData} col={columnDefs}></Table>
+
+      {open ? <RegisterShopEmp isModify={false} shopEmpData={shopEmpModifyData} /> : null}
     </article>
   );
 }

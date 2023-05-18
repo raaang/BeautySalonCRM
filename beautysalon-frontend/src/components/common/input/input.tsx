@@ -8,10 +8,11 @@ interface InputProps {
   title?: string;
   defaultValue?: string;
   placeholder: string;
+	value: any;
 }
 
 function Input(props: InputProps) {
-  const { inputType, title, placeholder, defaultValue } = props;
+  const { inputType, title, placeholder, value, defaultValue } = props;
 
   const typeStyle = inputType === 'small' ? smallLabelStyle : null;
 
@@ -19,7 +20,7 @@ function Input(props: InputProps) {
     <div css={continerStyle}>
       {title ? <Text value={title} type="label" /> : null}
       <label htmlFor="input" css={[labelStyle, typeStyle]}>
-        <input id="input" css={inputStyle} type={'text'} placeholder={placeholder} value={defaultValue} />
+        <input id="input" css={inputStyle} type={'text'} placeholder={placeholder} value={value} defaultValue={defaultValue} />
       </label>
     </div>
   );

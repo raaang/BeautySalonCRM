@@ -10,14 +10,12 @@ import InputContainer, {
   smallInputContainerStyle,
 } from '../../../components/inputContainer/inputContainer';
 import Modal, { modalState } from '../../../components/common/modal/modal';
-import RegisterShopEmp from '../../../components/shop/registerShopEmp';
 import Text from '../../../components/common/text/text';
 
 function Login() {
   const navigate = useNavigate();
   const [modalState, setModalState] = useState<modalState>({ title: '', body: '' });
   const [modalOpen, setModalOpen] = useState<boolean>(false);
-  const [open, setOpen] = useState<boolean>(false);
 
   const onClickModal = (btn: string) => {
     setModalOpen(!modalOpen);
@@ -32,7 +30,7 @@ function Login() {
       <InputContainer title="로그인">
         <div css={[inputContainerStyle, smallInputContainerStyle]}>
           {shopLoginConfig.map((item, idx) => (
-            <Input key={idx} inputType={'small'} title={item.title} placeholder={item.placeholder!} />
+            <Input key={idx} inputType={'small'} title={item.title} placeholder={item.placeholder!} value={item.id}/>
           ))}
 
           <div>
@@ -44,7 +42,7 @@ function Login() {
               <button css={btnStyle} onClick={() => navigate('/account/signup')}>
                 <Text type="btn" value={'회원가입'} />
               </button>
-              <button css={[btnStyle, findBtnStyle]} onClick={() => setOpen(!open)}>
+              <button css={[btnStyle, findBtnStyle]}>
                 <Text value={'아이디'} />
               </button>
               <button css={[btnStyle, findBtnStyle]}>
@@ -58,8 +56,6 @@ function Login() {
       {modalOpen ? (
         <Modal title={modalState.title} body={modalState.body} chngShowing={() => setModalOpen(!modalOpen)} />
       ) : null}
-
-      {open ? <RegisterShopEmp /> : null}
     </div>
   );
 }

@@ -44,7 +44,7 @@ function ArticleHeader(props: any) {
         >
           {props.title}
         </h3>
-        {/* <Button btnName={props.btnName} event={openActionModal}></Button> */}
+        {/* <Button btnName={props.btnName} btnClick={props.btnClick} event={openActionModal}></Button> */}
         <button
           css={css`
             width: 100px;
