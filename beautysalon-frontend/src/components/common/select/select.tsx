@@ -12,7 +12,9 @@ function Select(props: SelectProps) {
 
   return (
     <select css={selectStyle} name={placeholder} id={placeholder}>
-      <option value="">{placeholder}</option>
+      <option css={disabledSelectStyle} value="" disabled selected>
+        {placeholder}
+      </option>
       {options.map((item, idx) => (
         <option key={idx} value={`${item}`}>
           {item}
@@ -22,6 +24,9 @@ function Select(props: SelectProps) {
   );
 }
 
+const disabledSelectStyle = css`
+  display: none;
+`;
 const selectStyle = css`
   height: 33px;
   padding: 8px 12px;
