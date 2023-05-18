@@ -18,14 +18,14 @@ function ModalInput(props: ModalInputProps) {
 
   return (
     <div>
-      <div css={modalOverlayStyle} onClick={chngShowing}></div>
+      <div css={modalOverlayStyle}></div>
       <div css={modalWrapperStyle}>
         <div css={modalStyle}>
           {title ? <Text value={title} type="modal" /> : null}
           {children}
 
           <div css={thirdBtnText ? btnThreeStyle : btnContainerStyle}>
-            <button css={btnStyle}>
+            <button css={btnStyle} onClick={chngShowing}>
               <Text value={'취소'} type="btn" />
             </button>
             <button css={[btnStyle, nextBtnStyle]} onClick={nextBtn}>
@@ -54,7 +54,7 @@ const modalOverlayStyle = css`
 `;
 
 const modalWrapperStyle = css`
-  position: absolute;
+  position: fixed;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
