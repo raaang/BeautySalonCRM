@@ -5,7 +5,7 @@ import React from 'react';
 interface SelectProps {
   placeholder: string;
   options: string[];
-	value: any;
+  value?: any;
 }
 
 function Select(props: SelectProps) {

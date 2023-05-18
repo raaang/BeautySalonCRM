@@ -32,19 +32,19 @@ function ModifyShopStyle() {
           <div css={inputItemStyle}>
             <Text value={'스타일 대분류'} type="label" />
             <div css={selectStyle}>
-              <Select placeholder={'대분류'} options={bigOptionList} value={null} />
+              <Select placeholder={'대분류'} options={bigOptionList} />
             </div>
           </div>
           <div css={inputItemStyle}>
             <Text value={'스타일 중분류'} type="label" />
             <div css={selectStyle}>
-              <Select placeholder={'중분류'} options={bigOptionList} value={null} />
+              <Select placeholder={'중분류'} options={bigOptionList} />
             </div>
           </div>
           <div css={inputItemStyle}>
             <Text value={'스타일 소분류'} type="label" />
             <div css={selectStyle}>
-              <Select placeholder={'소분류'} options={bigOptionList} value={null} />
+              <Select placeholder={'소분류'} options={bigOptionList} />
             </div>
           </div>
         </div>

@@ -7,10 +7,10 @@ interface ModalInputProps {
   title: string | undefined;
   children: React.ReactChild;
   nextBtnText: string;
-  thirdBtnText: string | null;
+  thirdBtnText?: string | null;
   chngShowing: () => void;
   nextBtn: () => void;
-  thirdBtn: () => void | null;
+  thirdBtn?: () => void | null;
 }
 
 function ModalInput(props: ModalInputProps) {

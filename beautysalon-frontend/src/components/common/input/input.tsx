@@ -8,7 +8,7 @@ interface InputProps {
   title?: string;
   defaultValue?: string;
   placeholder: string;
-	value: any;
+  value?: any;
 }
 
 function Input(props: InputProps) {
@@ -20,7 +20,14 @@ function Input(props: InputProps) {
     <div css={continerStyle}>
       {title ? <Text value={title} type="label" /> : null}
       <label htmlFor="input" css={[labelStyle, typeStyle]}>
-        <input id="input" css={inputStyle} type={'text'} placeholder={placeholder} value={value} defaultValue={defaultValue} />
+        <input
+          id="input"
+          css={inputStyle}
+          type={'text'}
+          placeholder={placeholder}
+          value={value}
+          defaultValue={defaultValue}
+        />
       </label>
     </div>
   );

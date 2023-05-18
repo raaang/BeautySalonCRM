@@ -19,13 +19,13 @@ const TimeSelect = (props: TimeProps) => {
       <p css={inputTitleStyle}>{title}</p>
       <div css={selectListStyle}>
         <div css={timeStyle}>
-          <Select placeholder={placeholder[0]} options={hourList} value={undefined}></Select>
-          <Select placeholder={placeholder[1]} options={minuteList} value={undefined}></Select>
+          <Select placeholder={placeholder[0]} options={hourList}></Select>
+          <Select placeholder={placeholder[1]} options={minuteList}></Select>
         </div>
         <span>~</span>
         <div css={timeStyle}>
-          <Select placeholder={placeholder[2]} options={hourList} value={undefined}></Select>
-          <Select placeholder={placeholder[3]} options={minuteList} value={undefined}></Select>
+          <Select placeholder={placeholder[2]} options={hourList}></Select>
+          <Select placeholder={placeholder[3]} options={minuteList}></Select>
         </div>
       </div>
     </div>
