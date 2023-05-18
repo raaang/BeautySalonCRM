@@ -5,20 +5,21 @@ import Text from '../text/text';
 
 interface InputProps {
   inputType: 'small' | 'big';
-  title: string;
+  title?: string;
+  defaultValue?: string;
   placeholder: string;
 }
 
 function Input(props: InputProps) {
-  const { inputType, title, placeholder } = props;
+  const { inputType, title, placeholder, defaultValue } = props;
 
   const typeStyle = inputType === 'small' ? smallLabelStyle : null;
 
   return (
     <div css={continerStyle}>
-			<Text value={title} type='label' />
-      <label htmlFor='input' css={[labelStyle, typeStyle]}>
-        <input id='input' css={inputStyle} type={'text'} placeholder={placeholder} />
+      {title ? <Text value={title} type="label" /> : null}
+      <label htmlFor="input" css={[labelStyle, typeStyle]}>
+        <input id="input" css={inputStyle} type={'text'} placeholder={placeholder} value={defaultValue} />
       </label>
     </div>
   );
