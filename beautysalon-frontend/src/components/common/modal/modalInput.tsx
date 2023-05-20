@@ -7,28 +7,35 @@ interface ModalInputProps {
   title: string | undefined;
   children: React.ReactChild;
   nextBtnText: string;
+  thirdBtnText?: string | null;
   chngShowing: () => void;
   nextBtn: () => void;
+  thirdBtn?: () => void | null;
 }
 
 function ModalInput(props: ModalInputProps) {
-  const { title, children, nextBtnText, chngShowing, nextBtn } = props;
+  const { title, children, nextBtnText, thirdBtnText, chngShowing, nextBtn, thirdBtn } = props;
 
   return (
     <div>
-      <div css={modalOverlayStyle} onClick={chngShowing}></div>
+      <div css={modalOverlayStyle}></div>
       <div css={modalWrapperStyle}>
         <div css={modalStyle}>
           {title ? <Text value={title} type="modal" /> : null}
           {children}
 
-          <div css={btnContainerStyle}>
-            <button css={btnStyle}>
+          <div css={thirdBtnText ? btnThreeStyle : btnContainerStyle}>
+            <button css={btnStyle} onClick={chngShowing}>
               <Text value={'취소'} type="btn" />
             </button>
             <button css={[btnStyle, nextBtnStyle]} onClick={nextBtn}>
               <Text value={nextBtnText} type="btn" />
             </button>
+            {thirdBtnText ? (
+              <button css={[btnStyle, nextBtnStyle]} onClick={thirdBtn}>
+                <Text value={thirdBtnText} type="btn" />
+              </button>
+            ) : null}
           </div>
         </div>
       </div>
@@ -47,7 +54,7 @@ const modalOverlayStyle = css`
 `;
 
 const modalWrapperStyle = css`
-  position: absolute;
+  position: fixed;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
@@ -69,11 +76,11 @@ const modalStyle = css`
   justify-content: space-between;
 `;
 
-const titleStyle = css`
-  font-weight: 400;
-  font-size: 20px;
-  line-height: 24px;
-  text-align: center;
+const btnThreeStyle = css`
+  margin-top: 40px;
+  display: flex;
+  justify-content: center;
+  gap: 20px;
 `;
 
 const btnContainerStyle = css`

@@ -5,14 +5,17 @@ import React from 'react';
 interface SelectProps {
   placeholder: string;
   options: string[];
+  value?: any;
 }
 
 function Select(props: SelectProps) {
-  const { placeholder, options } = props;
+  const { placeholder, options, value } = props;
 
   return (
-    <select css={selectStyle} name={placeholder} id={placeholder}>
-      <option value="">{placeholder}</option>
+    <select css={selectStyle} name={placeholder} id={placeholder} defaultValue={value}>
+      <option css={disabledSelectStyle} value="" disabled selected>
+        {placeholder}
+      </option>
       {options.map((item, idx) => (
         <option key={idx} value={`${item}`}>
           {item}
@@ -22,6 +25,9 @@ function Select(props: SelectProps) {
   );
 }
 
+const disabledSelectStyle = css`
+  display: none;
+`;
 const selectStyle = css`
   height: 33px;
   padding: 8px 12px;
