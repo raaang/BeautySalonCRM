@@ -20,7 +20,7 @@ function Signup() {
             if (item.type === 'select') {
               return <TimeSelect key={idx} title={item.title} placeholder={item.placeholderList!} />;
             } else {
-              return <Input key={idx} inputType={'big'} title={item.title} placeholder={item.placeholder!} />;
+              return <Input key={idx} inputType={'big'} title={item.title} placeholder={item.placeholder!} value={item.id}/>;
             }
           })}
 
