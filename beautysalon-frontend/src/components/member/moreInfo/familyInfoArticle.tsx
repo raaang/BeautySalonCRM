@@ -11,12 +11,7 @@ function FamilyInfoArticle() {
   const [columnDefs] = useState(familyColumnData);
 
   return (
-    <article
-      css={css`
-        width: 100%;
-        margin-bottom: 100px;
-      `}
-    >
+    <article css={articleLayout}>
       <ArticleHeader title="패밀리 정보" btnName="패밀리 등록"></ArticleHeader>
       {rowData ? (
         <div>
@@ -38,6 +33,10 @@ function FamilyInfoArticle() {
   );
 }
 
+const articleLayout = css`
+  width: 100%;
+  margin-bottom: 100px;
+`;
 const familyNameLayout = css`
   margin-bottom: 10px;
 `;

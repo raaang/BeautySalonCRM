@@ -7,12 +7,7 @@ import { MemberInfoConfig } from '../../../config/moreInfoConfig';
 
 function MemberInfoArticle() {
   return (
-    <article
-      css={css`
-        width: 100%;
-        margin-bottom: 100px;
-      `}
-    >
+    <article css={articleLayout}>
       <ArticleHeader title="회원 정보" btnName="정보 수정"></ArticleHeader>
       <div>
         {MemberInfoConfig.map((item, idx) => {
@@ -25,4 +20,8 @@ function MemberInfoArticle() {
   );
 }
 
+const articleLayout = css`
+  width: 100%;
+  margin-bottom: 100px;
+`;
 export default MemberInfoArticle;

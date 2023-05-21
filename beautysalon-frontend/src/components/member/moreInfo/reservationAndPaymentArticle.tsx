@@ -10,12 +10,7 @@ function ReservationAndPaymentArticle() {
   const [reservationInfoData, setreservationInfoDat] = useState(reservationAndPaymentConfig);
   console.log(reservationInfoData);
   return (
-    <article
-      css={css`
-        width: 100%;
-        margin-bottom: 100px;
-      `}
-    >
+    <article css={articleLayout}>
       <ArticleHeader title="예약 및 결제" btnName="예약" btnName2="결제" modalBtn={false}></ArticleHeader>
 
       {reservationInfoData ? (
@@ -50,6 +45,10 @@ function ReservationAndPaymentArticle() {
   );
 }
 
+const articleLayout = css`
+  width: 100%;
+  margin-bottom: 100px;
+`;
 const dateLayout = css`
   margin-bottom: 10px;
 `;

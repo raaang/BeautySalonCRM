@@ -10,12 +10,7 @@ import HistoryLayout from '../../../components/common/history/historyLayout';
 function ProcedureHistoryArticle() {
   const [historyData, setHistoryData] = useState(operationHistoryConfig);
   return (
-    <article
-      css={css`
-        width: 100%;
-        margin-bottom: 100px;
-      `}
-    >
+    <article css={articleLayout}>
       <ArticleHeader title="시술 내역"></ArticleHeader>
       {historyData ? (
         historyData.map((items, idx) => {
@@ -53,6 +48,10 @@ function ProcedureHistoryArticle() {
   );
 }
 
+const articleLayout = css`
+  width: 100%;
+  margin-bottom: 100px;
+`;
 const timeTextLayout = css`
   margin-bottom: 10px;
 `;

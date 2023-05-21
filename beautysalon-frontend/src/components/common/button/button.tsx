@@ -3,19 +3,33 @@ import { css, jsx } from '@emotion/react';
 import React from 'react';
 import { MAUVE2 } from '../../../constants/color';
 
-function Button(props: any) {
+interface ButtonProps {
+  btnName: string;
+  color?: string;
+
+  openActionModal?: () => void;
+}
+function Button(props: ButtonProps) {
+  const { btnName, color = { MAUVE2 }, openActionModal } = props;
   return (
-    <button css={btnStyle} onClick={props.openActionModal}>
+    <button
+      css={[
+        btnStyle,
+        css`
+          background-color: ${color};
+        `,
+      ]}
+      onClick={props.openActionModal}
+    >
       {props.btnName}
     </button>
   );
 }
+
 const btnStyle = css`
-  width: 100px;
-  height: 30px;
+  padding: 10px 15px;
   border-radius: 20px;
   border: 0px;
-  background-color: ${MAUVE2};
   color: white;
   &:hover {
     filter: brightness(1.1);
