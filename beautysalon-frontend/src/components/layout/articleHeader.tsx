@@ -7,8 +7,18 @@ import Modal, { modalState } from '../common/modal/modal';
 import ModifyShopInfo from '../shop/modifyShopInfo';
 import { EmotionJSX } from '@emotion/react/types/jsx-namespace';
 import RegisterShopStyle from '../shop/registerShopStyle';
+import { StringLiteralLike } from 'typescript';
+
+interface articleHeaderProps {
+  title: string;
+  btnName?: string;
+  btnName2?: string;
+
+  modalBtn?: boolean;
+}
 
 function ArticleHeader(props: any) {
+  const { title, btnName, btnName2, modalBtn = true } = props;
   const [modalState, setModalState] = useState<modalState>({ title: '', body: '' });
   const [modalOpen, setModalOpen] = useState<boolean>(false);
   const [open, setOpen] = useState<boolean>(false);
@@ -27,42 +37,21 @@ function ArticleHeader(props: any) {
 
   return (
     <div>
-      <div
-        css={css`
-          display: flex;
-          align-items: center;
-          width: 100%;
-          height: 40px;
-          font-size: 18px;
-        `}
-      >
-        <h3
-          css={css`
-            color: ${ORANGE1};
-            margin-right: 30px;
-          `}
-        >
-          {props.title}
-        </h3>
+      <div css={articleHeaderLayout}>
+        <h3 css={articleHeaderTitle}>{props.title}</h3>
         {/* <Button btnName={props.btnName} btnClick={props.btnClick} event={openActionModal}></Button> */}
-        <button
-          css={css`
-            width: 100px;
-            height: 30px;
-            border-radius: 20px;
-            border: 0px;
-            background-color: ${MAUVE2};
-            color: white;
-            &:hover {
-              filter: brightness(1.1);
-              color: black;
-              transition: 0.3s;
-            }
-          `}
-          onClick={() => modalHandler(props.btnName)}
-        >
-          {props.btnName}
-        </button>
+        <div css={btnDivLayout}>
+          {btnName ? (
+            <button css={[btnStyle]} onClick={() => modalHandler(props.btnName)}>
+              {props.btnName}
+            </button>
+          ) : null}
+          {btnName2 ? (
+            <button css={[btnStyle]} onClick={() => modalHandler(props.btnName)}>
+              {props.btnName2}
+            </button>
+          ) : null}
+        </div>
       </div>
       <hr
         css={css`
@@ -77,5 +66,34 @@ function ArticleHeader(props: any) {
     </div>
   );
 }
+
+const articleHeaderLayout = css`
+  display: flex;
+  align-items: center;
+  width: 100%;
+  height: 40px;
+  font-size: 18px;
+`;
+const articleHeaderTitle = css`
+  color: ${ORANGE1};
+  margin-right: 30px;
+`;
+
+const btnDivLayout = css`
+  display: flex;
+  gap: 10px;
+`;
+const btnStyle = css`
+  padding: 10px 15px;
+  border-radius: 20px;
+  border: 0px;
+  background-color: ${MAUVE2};
+  color: white;
+  &:hover {
+    filter: brightness(1.1);
+    color: black;
+    transition: 0.3s;
+  }
+`;
 
 export default ArticleHeader;
