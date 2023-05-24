@@ -1,7 +1,6 @@
 package com.salon.beauty.service.shop;
 
 import com.salon.beauty.model.dto.request.shop.ShopSignUpRequestDTO;
-import com.salon.beauty.model.mapper.shop.ShopExistCheckMapper;
 import com.salon.beauty.model.mapper.shop.ShopSignUpMapper;
 import lombok.RequiredArgsConstructor;
 import org.apache.ibatis.session.SqlSession;
@@ -25,7 +24,7 @@ public class ShopSignUpServiceImpl implements ShopSignUpService {
 
     // 회원가입
     @Override
-    public boolean signup(ShopSignUpRequestDTO shopSignUpRequestDTO) throws Exception {
+    public boolean signUp(ShopSignUpRequestDTO shopSignUpRequestDTO) throws Exception {
         if(!isValidShopLoginId(shopSignUpRequestDTO.getShop_login_id())) throw new IllegalArgumentException("글자(a-z), 숫자(0-9)만 입력 가능합니다.");
         if(!isValidLengthShopLoginId(shopSignUpRequestDTO.getShop_login_id())) throw new IllegalArgumentException("로그인 아이디를 6글자 이상 20글자 이내로 입력해주세요.");
         if(!isValidLengthShopLoginPassword(shopSignUpRequestDTO.getShop_password())) throw new IllegalArgumentException("로그인 비밀번호를  8글자 이상 20글자 이내로 입력해주세요.");
@@ -34,9 +33,16 @@ public class ShopSignUpServiceImpl implements ShopSignUpService {
         if(!isValidLengthShopCeo(shopSignUpRequestDTO.getShop_ceo())) throw new IllegalArgumentException("샵 대표 이름을 20글자 이내로 입력해주세요.");
         if(!isValidLengthShopCeoPhone(shopSignUpRequestDTO.getShop_ceo_phone())) throw new IllegalArgumentException("샵 대표 이름을 20글자 이내로 입력해주세요.");
         shopSignUpRequestDTO.setShop_password(passwordEncoder.encode(shopSignUpRequestDTO.getShop_password()));
-        if(sqlSession.getMapper(ShopExistCheckMapper.class).shopExistCheck(shopSignUpRequestDTO.getShop_login_id())>=1) throw new IllegalArgumentException("로그인 아이디가 이미 존재합니다.");
+        if(shopCheckId(shopSignUpRequestDTO.getShop_login_id())) throw new IllegalArgumentException("로그인 아이디가 이미 존재합니다.");
         int result = sqlSession.getMapper(ShopSignUpMapper.class).signup(shopSignUpRequestDTO);
         return result==1;
+    }
+
+    // 로그인 아이디 중복 검사
+    @Override
+    public boolean shopCheckId(String shop_login_id) throws Exception {
+        if(sqlSession.getMapper(ShopSignUpMapper.class).shopExistCheck(shop_login_id)>=1) throw new IllegalArgumentException("로그인 아이디가 이미 존재합니다.");
+        return false;
     }
 
     // 로그인 아이디 패턴 검사

@@ -66,7 +66,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 // authorizeRequests() : HttpServletRequests 를 사용하는 요청들에 대한 접근 제한을 설정
                 .authorizeRequests()
                 .requestMatchers(CorsUtils::isPreFlightRequest).permitAll()
-                .antMatchers("/api/shop/signin", "/api/shop/signup", "/api/shop/checkid").permitAll()
+                .antMatchers("/api/shop/signin", "/api/shop/signup/**").permitAll()
                 // 나머지 요청들은 모두 인증되어야 한다.
                 .anyRequest().authenticated()
                 .and()

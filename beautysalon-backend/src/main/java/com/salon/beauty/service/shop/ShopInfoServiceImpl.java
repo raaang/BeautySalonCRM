@@ -22,7 +22,6 @@ public class ShopInfoServiceImpl implements ShopInfoService {
     // 샵 정보 조회
     @Override
     public ShopInfoResponseDTO getShopInfo() throws Exception {
-
         return sqlSession.getMapper(ShopInfoMapper.class).getShopInfo(SecurityContextHolder.getContext().getAuthentication().getName());
     }
 }
