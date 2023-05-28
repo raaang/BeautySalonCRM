@@ -5,9 +5,7 @@ import com.salon.beauty.service.shop.ShopSignUpService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 
 /**
@@ -22,7 +20,13 @@ public class ShopSignUpController {
 
     @PostMapping("")
     public ResponseEntity<?> signup(@RequestBody ShopSignUpRequestDTO shopSignUpRequestDTO) throws Exception {
-        if(shopSignUpService.signup(shopSignUpRequestDTO)) return ResponseEntity.status(201).body("성공");
-        return ResponseEntity.status(201).body("회원가입에 성공하였습니다.");
+        if(shopSignUpService.signUp(shopSignUpRequestDTO)) return ResponseEntity.status(201).body("회원가입에 성공하였습니다.");
+        return ResponseEntity.status(201).body("회원가입에 실패하였습니다.");
+    }
+
+    @GetMapping("/checkid")
+    public ResponseEntity<?> getShopCheckId(@RequestParam String shop_login_id) throws Exception {
+        if(shopSignUpService.shopCheckId(shop_login_id)) return ResponseEntity.status(200).body("이미 사용된 로그인 아이디입니다. 다른 아이디를 선택하세요.");
+        return ResponseEntity.status(200).body("사용 가능한 로그인 아이디입니다.");
     }
 }

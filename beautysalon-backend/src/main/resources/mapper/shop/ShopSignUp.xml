@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.salon.beauty.model.mapper.shop.ShopSignUpMapper">
+    <insert id="signup" parameterType="ShopSignUpRequestDTO">
+        INSERT INTO SHOP(
+                         SHOP_LOGIN_ID
+                         ,SHOP_PASSWORD
+                         ,SHOP_NAME
+                         ,SHOP_PHONE
+                         ,SHOP_CEO
+                         ,SHOP_CEO_PHONE
+                         ,POINT_ACCUMULATION_RATE
+                         ,POINT_ACCUMULATION_CONDITION)
+        VALUES(
+               #{shop_login_id}
+               ,#{shop_password}
+               ,#{shop_name}
+               ,#{shop_phone}
+               ,#{shop_ceo}
+               ,#{shop_ceo_phone}
+               ,0
+               ,""
+              )
+    </insert>
+
+    <select id="shopExistCheck" parameterType="String" resultType="int">
+        SELECT COUNT(SHOP_LOGIN_ID)
+        FROM SHOP
+        WHERE SHOP_LOGIN_ID=#{shop_login_id}
+    </select>
+</mapper>

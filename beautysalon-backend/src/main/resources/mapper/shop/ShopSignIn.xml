@@ -4,6 +4,9 @@
 
 <mapper namespace="com.salon.beauty.model.mapper.shop.ShopSignInMapper">
     <select id="getUserById" parameterType="String" resultType="com.salon.beauty.util.security.UserDetailsImpl">
-        SELECT shop_login_id, shop_password FROM shop WHERE shop_login_id=#{shop_login_id}
+        SELECT SHOP_LOGIN_ID
+               ,SHOP_PASSWORD
+        FROM SHOP
+            WHERE SHOP_LOGIN_ID=#{shop_login_id}
     </select>
 </mapper>

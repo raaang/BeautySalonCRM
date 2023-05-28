@@ -13,4 +13,7 @@ import java.sql.SQLException;
 public interface ShopSignUpMapper {
     // 회원가입
     public int signup(ShopSignUpRequestDTO shopSignUpRequestDTO) throws SQLException;
+
+    // 샵 이름 존재 여부 체크 mapper
+    public int shopExistCheck(String shop_login_id);
 }
