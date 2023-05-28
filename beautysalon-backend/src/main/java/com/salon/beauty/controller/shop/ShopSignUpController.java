@@ -21,7 +21,7 @@ public class ShopSignUpController {
     @PostMapping("")
     public ResponseEntity<?> signup(@RequestBody ShopSignUpRequestDTO shopSignUpRequestDTO) throws Exception {
         if(shopSignUpService.signUp(shopSignUpRequestDTO)) return ResponseEntity.status(201).body("회원가입에 성공하였습니다.");
-        return ResponseEntity.status(201).body("회원가입에 실패하였습니다.");
+        return ResponseEntity.status(400).body("회원가입에 실패하였습니다.");
     }
 
     @GetMapping("/checkid")
