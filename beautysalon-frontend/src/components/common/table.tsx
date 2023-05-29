@@ -74,6 +74,7 @@ function Table({ row, col, fontSize = '9' }: Props) {
         pagination={true}
         paginationAutoPageSize={true}
         // onGridReady={onGridReady}
+				rowSelection={'multiple'}
       ></AgGridReact>
     </div>
   );
