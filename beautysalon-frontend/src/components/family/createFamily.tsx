@@ -1,15 +1,27 @@
 /** @jsx jsx */
 import { css, jsx } from '@emotion/react';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 
 import Text from '../common/text/text';
 import SearchBar from '../common/searchBar';
 import Table from '../common/table';
 import { ERROR } from '../../constants/color';
+import Modal, { modalState } from '../common/modal/modal';
 
-function createFamily() {
+interface CreateFamilyProps {
+  tabIdx: number;
+}
+
+function createFamily(props: CreateFamilyProps) {
+  const { tabIdx } = props;
   const [search, setSearch] = useState<string>('');
   const [searchUser, setSearchUser] = useState<string>('');
+
+  const [modalOpen, setModalOpen] = useState<boolean>(false); // 패밀리 생성, 수정 확인 모달
+  const [modalState, setModalState] = useState<modalState>({
+    title: '해당 구성원으로 패밀리 생성을 완료할까요?',
+    body: '',
+  });
 
   const [familyRow] = useState(
     Array.from({ length: 3 }, (_, n) => ({
@@ -49,16 +61,16 @@ function createFamily() {
     { field: '주소', flex: 2 },
   ]);
 
+  useEffect(() => {
+    setModalState({ title: `해당 구성원으로 패밀리 ${tabIdx === 0 ? '생성' : '수정'}을 완료할까요?`, body: '' });
+  }, [tabIdx]);
+
   return (
     <div css={conatinerStyle}>
       <div>
         <Text type="tableContent" value={'패밀리 명'} style={{ color: '#FF9164' }} />
         <div css={searchContainerStyle}>
-          <SearchBar
-            value={search}
-            placeholder={'사용하실 패밀리 명을 입력해주세요.'}
-            setValue={setSearch}
-          />
+          <SearchBar value={search} placeholder={'사용하실 패밀리 명을 입력해주세요.'} setValue={setSearch} />
           <span css={errMsgStyle}>중복된 패밀리명 입니다.</span>
         </div>
       </div>
@@ -73,12 +85,10 @@ function createFamily() {
       <div>
         <Text type="tableContent" value={'구성원 선택'} />
         <div css={searchContainerStyle}>
-          <SearchBar
-            value={searchUser}
-            placeholder={'추가하고 싶은 회원명을 입력해주세요.'}
-            setValue={setSearchUser}
-          />
-          <button css={btnStyle}>패밀리 생성</button>
+          <SearchBar value={searchUser} placeholder={'추가하고 싶은 회원명을 입력해주세요.'} setValue={setSearchUser} />
+          <button css={btnStyle} onClick={() => setModalOpen(!modalOpen)}>
+            패밀리 생성
+          </button>
           <span css={errMsgStyle}>구성원은 최대 10명까지 선택 가능합니다.</span>
         </div>
 
@@ -86,6 +96,10 @@ function createFamily() {
           <Table row={userRow} col={userCol} fontSize="11"></Table>
         </div>
       </div>
+
+      {modalOpen ? (
+        <Modal title={modalState.title} body={modalState.body} chngShowing={() => setModalOpen(!modalOpen)} />
+      ) : null}
     </div>
   );
 }

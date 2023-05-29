@@ -12,7 +12,7 @@ function Family() {
       <Header />
       <Tab title={'패밀리'} tabList={tabList} tabIdx={tabIdx} setTabIdx={setTabIdx} />
 
-			<CreateFamily />
+			<CreateFamily tabIdx={tabIdx}/>
     </div>
   );
 }
