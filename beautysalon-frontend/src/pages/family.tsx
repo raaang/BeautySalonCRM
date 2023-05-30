@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import Header from '../components/layout/header';
 import Tab from '../components/layout/Tab';
 import CreateFamily from '../components/family/createFamily';
+import CheckFamilyPoint from '../components/family/checkFamilyPoint';
 
 function Family() {
   const [tabIdx, setTabIdx] = useState<number>(0);
@@ -12,7 +13,7 @@ function Family() {
       <Header />
       <Tab title={'패밀리'} tabList={tabList} tabIdx={tabIdx} setTabIdx={setTabIdx} />
 
-			<CreateFamily tabIdx={tabIdx}/>
+      {tabIdx < 2 ? <CreateFamily tabIdx={tabIdx} /> : <CheckFamilyPoint />}
     </div>
   );
 }
