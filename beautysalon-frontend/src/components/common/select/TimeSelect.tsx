@@ -1,15 +1,17 @@
 /** @jsx jsx */
 import { css, jsx } from '@emotion/react';
 import React from 'react';
+import { MAUVE2 } from '../../../constants/color';
 import Select from './select';
 
 interface TimeProps {
   title: string;
   placeholder: string[];
+  detailsComponent?: boolean;
 }
 
 const TimeSelect = (props: TimeProps) => {
-  const { title, placeholder } = props;
+  const { title, placeholder, detailsComponent = false } = props;
 
   const hourList = Array.from({ length: 24 }, (_, n) => String(n).padStart(2, '0'));
   const minuteList = Array.from({ length: 12 }, (_, n) => String(n * 5).padStart(2, '0'));
@@ -19,13 +21,13 @@ const TimeSelect = (props: TimeProps) => {
       <p css={inputTitleStyle}>{title}</p>
       <div css={selectListStyle}>
         <div css={timeStyle}>
-          <Select placeholder={placeholder[0]} options={hourList}></Select>
-          <Select placeholder={placeholder[1]} options={minuteList}></Select>
+          <Select placeholder={placeholder[0]} options={hourList} detailsComponent={detailsComponent}></Select>
+          <Select placeholder={placeholder[1]} options={minuteList} detailsComponent={detailsComponent}></Select>
         </div>
         <span>~</span>
         <div css={timeStyle}>
-          <Select placeholder={placeholder[2]} options={hourList}></Select>
-          <Select placeholder={placeholder[3]} options={minuteList}></Select>
+          <Select placeholder={placeholder[2]} options={hourList} detailsComponent={detailsComponent}></Select>
+          <Select placeholder={placeholder[3]} options={minuteList} detailsComponent={detailsComponent}></Select>
         </div>
       </div>
     </div>

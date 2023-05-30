@@ -1,18 +1,22 @@
 /** @jsx jsx */
 import { css, jsx } from '@emotion/react';
 import React from 'react';
+import { MAUVE2 } from '../../../constants/color';
 
 interface SelectProps {
   placeholder: string;
   options: string[];
   value?: any;
+  detailsComponent?: boolean;
 }
 
 function Select(props: SelectProps) {
-  const { placeholder, options, value } = props;
+  const { placeholder, options, value, detailsComponent = false } = props;
 
+  let detailsStyle;
+  if (detailsComponent) detailsStyle = detailsComponentStyle;
   return (
-    <select css={selectStyle} name={placeholder} id={placeholder} defaultValue={value}>
+    <select css={[selectStyle, detailsStyle]} name={placeholder} id={placeholder} defaultValue={value}>
       <option css={disabledSelectStyle} value="" disabled selected>
         {placeholder}
       </option>
@@ -40,6 +44,15 @@ const selectStyle = css`
   font-weight: 400;
   font-size: 14px;
   line-height: 17px;
+`;
+
+const detailsComponentStyle = css`
+  border: 2px solid black;
+  padding: 10px;
+  height: 40px;
+  border-radius: 15px;
+  border-color: ${MAUVE2};
+  color: rgba(0, 0, 0, 0.5);
 `;
 
 export default Select;

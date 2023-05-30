@@ -10,7 +10,7 @@ interface ButtonProps {
   openActionModal?: () => void;
 }
 function Button(props: ButtonProps) {
-  const { btnName, color = { MAUVE2 }, openActionModal } = props;
+  const { btnName, color = MAUVE2, openActionModal } = props;
   return (
     <button
       css={[
@@ -27,7 +27,7 @@ function Button(props: ButtonProps) {
 }
 
 const btnStyle = css`
-  padding: 10px 15px;
+  padding: 7px 15px;
   border-radius: 20px;
   border: 0px;
   color: white;
