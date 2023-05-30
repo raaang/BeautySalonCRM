@@ -27,7 +27,6 @@ public class ShopModifyServiceImpl implements ShopModifyService {
 
     @Override
     public boolean shopModify(ShopModifyRequestDTO shopModifyRequestDTO) throws Exception {
-        System.out.println(shopModifyRequestDTO.getShop_name());
         if(!isValidShopLoginId(shopModifyRequestDTO.getShop_login_id())) throw new IllegalArgumentException("글자(a-z), 숫자(0-9)만 입력 가능합니다.");
         if(!isValidLengthShopLoginId(shopModifyRequestDTO.getShop_login_id())) throw new IllegalArgumentException("로그인 아이디를 6글자 이상 20글자 이내로 입력해주세요.");
         if(!isValidLengthShopLoginPassword(shopModifyRequestDTO.getShop_password())) throw new IllegalArgumentException("로그인 비밀번호를  8글자 이상 20글자 이내로 입력해주세요.");
@@ -38,8 +37,6 @@ public class ShopModifyServiceImpl implements ShopModifyService {
         shopModifyRequestDTO.setShop_password(passwordEncoder.encode(shopModifyRequestDTO.getShop_password()));
         if(shopCheckId(shopModifyRequestDTO.getShop_login_id())) throw new IllegalArgumentException("로그인 아이디가 이미 존재합니다.");
         shopModifyRequestDTO.setShop_id(sqlSession.getMapper(ShopIdMapper.class).shopId(SecurityContextHolder.getContext().getAuthentication().getName()));
-        System.out.println(shopModifyRequestDTO.getShop_login_id());
-        System.out.println(shopModifyRequestDTO.getShop_id());
         int result = sqlSession.getMapper(ShopModifyMapper.class).shopModify(shopModifyRequestDTO);
         return result==1;
     }
