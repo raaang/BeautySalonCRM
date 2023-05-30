@@ -8,6 +8,7 @@ import ModifyShopInfo from '../shop/modifyShopInfo';
 import { EmotionJSX } from '@emotion/react/types/jsx-namespace';
 import RegisterShopStyle from '../shop/registerShopStyle';
 import { StringLiteralLike } from 'typescript';
+import PaymentModal from '../payment/paymentModal';
 
 interface articleHeaderProps {
   title: string;
@@ -31,6 +32,9 @@ function ArticleHeader(props: any) {
     if (name === '스타일 등록') {
       setModal(<RegisterShopStyle />);
     }
+    if (name === '결제') {
+      setModal(<PaymentModal />);
+    }
 
     setOpen(!open);
   };
@@ -47,7 +51,7 @@ function ArticleHeader(props: any) {
             </button>
           ) : null}
           {btnName2 ? (
-            <button css={[btnStyle]} onClick={() => modalHandler(props.btnName)}>
+            <button css={[btnStyle]} onClick={() => modalHandler(props.btnName2)}>
               {props.btnName2}
             </button>
           ) : null}
