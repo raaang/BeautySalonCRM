@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.salon.beauty.model.mapper.shop.EmployeeModifyMapper">
+    <update id="employeeModify" parameterType="EmployeeModifyRequestDTO">
+        UPDATE EMPLOYEE
+        SET EMPLOYEE_WORK_STATUS=#{employee_work_status}
+          ,EMPLOYEE_GENDER=#{employee_gender}
+          ,EMPLOYEE_NAME=#{employee_name}
+          ,EMPLOYEE_PHONE=#{employee_phone}
+          ,EMPLOYEE_ADDRESS=#{employee_address}
+          ,MEMO=#{memo}
+        WHERE SHOP_ID=#{shop_id}
+            AND EMPLOYEE_ID=#{employee_id}
+    </update>
+</mapper>
