@@ -51,7 +51,24 @@ function History(props: HistoryProps) {
       </div>
     );
   } else if (reservation_manager_list) {
-    return null;
+    return (
+      <div css={historyLayout}>
+        <span css={timeText}>
+          {startTime} ~ {endTime}
+        </span>
+        <span css={orangeText}>{operationName}</span>
+        <div>
+          <span
+            css={css`
+              font-weight: bold;
+            `}
+          >
+            {name}{' '}
+          </span>
+          <span>고객님</span>
+        </div>
+      </div>
+    );
   } else if (operationHistory) {
     return (
       <div css={historyLayout}>
