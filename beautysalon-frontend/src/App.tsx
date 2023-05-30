@@ -6,6 +6,7 @@ import MoreInfo from './pages/member/moreInfo';
 import Account from './pages/shop/account/index';
 import ShopInfo from './pages/shop/shopInfo';
 import Family from './pages/family';
+import RegisterReservation from './pages/reservation/registerReservation';
 
 function App() {
   return (
@@ -15,6 +16,7 @@ function App() {
         <Route path="/shop" element={<ShopInfo />} />
         <Route path="/family" element={<Family />} />
         <Route path="/moreInfo" element={<MoreInfo />} />
+        <Route path="/reservation" element={<RegisterReservation />} />
       </Routes>
     </BrowserRouter>
   );
