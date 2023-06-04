@@ -12,6 +12,7 @@
                         ,EMPLOYEE_PHONE
                         ,EMPLOYEE_ADDRESS
                         ,MEMO
+                        ,IS_DELETED
                         )
         VALUES(
               #{shop_id}
@@ -21,6 +22,7 @@
               ,#{employee_phone}
               ,#{employee_address}
               ,#{memo}
+              ,0
               )
     </insert>
 </mapper>
