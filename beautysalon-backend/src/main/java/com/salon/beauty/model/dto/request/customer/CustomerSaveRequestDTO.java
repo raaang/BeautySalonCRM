@@ -25,6 +25,4 @@ public class CustomerSaveRequestDTO {
     private String familyId;            // 패밀리 ID
     private String workerId;            // 담당 직원 ID
     private String shopId;              // 소속 샵 ID
-
-
 }

@@ -8,8 +8,8 @@ import lombok.*;
 @Data
 public class EmployeeDeleteDTO {
     // 직원 id
-    private String employee_id;
+    private String employeeId;
 
     // 샵 id
-    private String shop_id;
+    private String shopId;
 }

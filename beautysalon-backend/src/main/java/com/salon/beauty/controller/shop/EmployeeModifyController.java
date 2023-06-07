@@ -21,6 +21,6 @@ public class EmployeeModifyController {
     @PostMapping("")
     public ResponseEntity<?> employeeModify(@RequestBody EmployeeModifyRequestDTO employeeModifyRequestDTO) throws Exception {
         if(employeeModifyService.employeeModify(employeeModifyRequestDTO)) return ResponseEntity.status(201).body("직원 정보 수정에 성공하였습니다.");
-        return ResponseEntity.status(201).body("직원 정보 수정에 실패하였습니다.");
+        return ResponseEntity.status(400).body("직원 정보 수정에 실패하였습니다.");
     }
 }

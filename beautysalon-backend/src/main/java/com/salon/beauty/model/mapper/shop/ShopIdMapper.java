@@ -7,5 +7,5 @@ import org.apache.ibatis.annotations.Mapper;
  */
 @Mapper
 public interface ShopIdMapper {
-    public String shopId(String shop_login_id) throws Exception;
+    public String shopId(String shopLoginId) throws Exception;
 }

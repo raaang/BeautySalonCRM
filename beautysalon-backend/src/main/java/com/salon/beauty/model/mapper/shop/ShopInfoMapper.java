@@ -10,5 +10,5 @@ import java.sql.SQLException;
  */
 @Mapper
 public interface ShopInfoMapper {
-    public ShopInfoResponseDTO getShopInfo(String shop_login_id) throws SQLException;
+    public ShopInfoResponseDTO getShopInfo(String shopLoginId) throws SQLException;
 }

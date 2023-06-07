@@ -4,14 +4,14 @@
 
 <mapper namespace="com.salon.beauty.model.mapper.shop.ShopInfoMapper">
     <select id="getShopInfo" parameterType="String" resultType="ShopInfoResponseDTO">
-        SELECT SHOP_LOGIN_ID
-               ,SHOP_NAME
-               ,SHOP_PHONE
-               ,SHOP_CEO
-               ,SHOP_CEO_PHONE
-               ,POINT_ACCUMULATION_RATE
-               ,POINT_ACCUMULATION_CONDITION
+        SELECT SHOP_LOGIN_ID AS shopLoginId
+               ,SHOP_NAME AS shopName
+               ,SHOP_PHONE AS shopPhone
+               ,SHOP_CEO AS shopCeo
+               ,SHOP_CEO_PHONE AS shopCeoPhone
+               ,POINT_ACCUMULATION_RATE AS pointAccumulationRate
+               ,POINT_ACCUMULATION_CONDITION AS pointAccumulationCondition
         FROM SHOP
-        WHERE SHOP_LOGIN_ID=#{shop_login_id}
+        WHERE SHOP_LOGIN_ID=#{shopLoginId}
     </select>
 </mapper>

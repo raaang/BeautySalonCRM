@@ -15,5 +15,5 @@ public interface ShopSignUpMapper {
     public int signup(ShopSignUpRequestDTO shopSignUpRequestDTO) throws SQLException;
 
     // 샵 이름 존재 여부 체크 mapper
-    public int shopExistCheck(String shop_login_id);
+    public int shopExistCheck(String shopLoginId);
 }

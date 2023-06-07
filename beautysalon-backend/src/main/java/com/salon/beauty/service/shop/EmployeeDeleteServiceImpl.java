@@ -22,10 +22,8 @@ public class EmployeeDeleteServiceImpl implements EmployeeDeleteService {
     @Override
     public boolean employeeDelete(String employeeId) throws Exception {
         EmployeeDeleteDTO employeeDeleteDTO = new EmployeeDeleteDTO();
-        employeeDeleteDTO.setEmployee_id(employeeId);
-        employeeDeleteDTO.setShop_id(sqlSession.getMapper(ShopIdMapper.class).shopId(SecurityContextHolder.getContext().getAuthentication().getName()));
-        System.out.println(employeeDeleteDTO.getEmployee_id());
-        System.out.println(employeeDeleteDTO.getShop_id());
+        employeeDeleteDTO.setEmployeeId(employeeId);
+        employeeDeleteDTO.setShopId(sqlSession.getMapper(ShopIdMapper.class).shopId(SecurityContextHolder.getContext().getAuthentication().getName()));
         int result = sqlSession.getMapper(EmployeeDeleteMapper.class).employeeDelete(employeeDeleteDTO);
         return result==1;
     }

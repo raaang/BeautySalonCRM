@@ -6,7 +6,7 @@
     <update id="employeeDelete" parameterType="EmployeeDeleteDTO">
         UPDATE EMPLOYEE
         SET IS_DELETED=1
-        WHERE SHOP_ID=#{shop_id}
-          AND EMPLOYEE_ID=#{employee_id}
+        WHERE SHOP_ID=#{shopId}
+          AND EMPLOYEE_ID=#{employeeId}
     </update>
 </mapper>

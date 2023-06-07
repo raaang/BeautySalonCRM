@@ -5,13 +5,13 @@
 <mapper namespace="com.salon.beauty.model.mapper.shop.EmployeeModifyMapper">
     <update id="employeeModify" parameterType="EmployeeModifyRequestDTO">
         UPDATE EMPLOYEE
-        SET EMPLOYEE_WORK_STATUS=#{employee_work_status}
-          ,EMPLOYEE_GENDER=#{employee_gender}
-          ,EMPLOYEE_NAME=#{employee_name}
-          ,EMPLOYEE_PHONE=#{employee_phone}
-          ,EMPLOYEE_ADDRESS=#{employee_address}
+        SET EMPLOYEE_WORK_STATUS=#{employeeWorkStatus}
+          ,EMPLOYEE_GENDER=#{employeeGender}
+          ,EMPLOYEE_NAME=#{employeeName}
+          ,EMPLOYEE_PHONE=#{employeePhone}
+          ,EMPLOYEE_ADDRESS=#{employeeAddress}
           ,MEMO=#{memo}
-        WHERE SHOP_ID=#{shop_id}
-            AND EMPLOYEE_ID=#{employee_id}
+        WHERE SHOP_ID=#{shopId}
+            AND EMPLOYEE_ID=#{employeeId}
     </update>
 </mapper>

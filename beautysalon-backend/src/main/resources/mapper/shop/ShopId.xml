@@ -4,8 +4,8 @@
 
 <mapper namespace="com.salon.beauty.model.mapper.shop.ShopIdMapper">
     <select id="shopId" parameterType="String" resultType="String">
-        SELECT SHOP_ID
+        SELECT SHOP_ID AS shopId
         FROM SHOP
-        WHERE SHOP_LOGIN_ID=#{shop_login_id}
+        WHERE SHOP_LOGIN_ID=#{shopLoginId}
     </select>
 </mapper>
