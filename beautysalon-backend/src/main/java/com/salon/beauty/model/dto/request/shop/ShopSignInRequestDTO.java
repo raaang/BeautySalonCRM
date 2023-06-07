@@ -14,8 +14,8 @@ import lombok.ToString;
 @ToString
 public class ShopSignInRequestDTO {
     // 샵 로그인 아이디
-    private String shop_login_id;
+    private String shopLoginId;
 
     // 샵 로그인 비밀번호
-    private String shop_password;
+    private String shopPassword;
 }

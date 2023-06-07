@@ -12,15 +12,17 @@
                         ,EMPLOYEE_PHONE
                         ,EMPLOYEE_ADDRESS
                         ,MEMO
+                        ,IS_DELETED
                         )
         VALUES(
-              #{shop_id}
-              ,#{employee_work_status}
-              ,#{employee_gender}
-              ,#{employee_name}
-              ,#{employee_phone}
-              ,#{employee_address}
+              #{shopId}
+              ,#{employeeWorkStatus}
+              ,#{employeeGender}
+              ,#{employeeName}
+              ,#{employeePhone}
+              ,#{employeeAddress}
               ,#{memo}
+              ,0
               )
     </insert>
 </mapper>

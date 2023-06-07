@@ -14,12 +14,12 @@
                          ,POINT_ACCUMULATION_RATE
                          ,POINT_ACCUMULATION_CONDITION)
         VALUES(
-               #{shop_login_id}
-               ,#{shop_password}
-               ,#{shop_name}
-               ,#{shop_phone}
-               ,#{shop_ceo}
-               ,#{shop_ceo_phone}
+               #{shopLoginId}
+               ,#{shopPassword}
+               ,#{shopName}
+               ,#{shopPhone}
+               ,#{shopCeo}
+               ,#{shopCeoPhone}
                ,0
                ,""
               )
@@ -28,6 +28,6 @@
     <select id="shopExistCheck" parameterType="String" resultType="int">
         SELECT COUNT(SHOP_LOGIN_ID)
         FROM SHOP
-        WHERE SHOP_LOGIN_ID=#{shop_login_id}
+        WHERE SHOP_LOGIN_ID=#{shopLoginId}
     </select>
 </mapper>

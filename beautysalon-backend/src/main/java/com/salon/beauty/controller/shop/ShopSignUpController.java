@@ -25,8 +25,8 @@ public class ShopSignUpController {
     }
 
     @GetMapping("/checkid")
-    public ResponseEntity<?> getShopCheckId(@RequestParam String shop_login_id) throws Exception {
-        if(shopSignUpService.shopCheckId(shop_login_id)) return ResponseEntity.status(200).body("이미 사용된 로그인 아이디입니다. 다른 아이디를 선택하세요.");
+    public ResponseEntity<?> getShopCheckId(@RequestParam String shopLoginId) throws Exception {
+        if(shopSignUpService.shopCheckId(shopLoginId)) return ResponseEntity.status(200).body("이미 사용된 로그인 아이디입니다. 다른 아이디를 선택하세요.");
         return ResponseEntity.status(200).body("사용 가능한 로그인 아이디입니다.");
     }
 }

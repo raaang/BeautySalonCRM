@@ -23,11 +23,11 @@ public class ShopSignInServiceImpl implements ShopSignInService {
     @Override
     public ShopSignInResponseDTO signIn(ShopSignInRequestDTO shopSignInRequestDTO) throws UsernameNotFoundException {
         Authentication authentication = authenticationManager.authenticate(
-                new UsernamePasswordAuthenticationToken(shopSignInRequestDTO.getShop_login_id(), shopSignInRequestDTO.getShop_password())
+                new UsernamePasswordAuthenticationToken(shopSignInRequestDTO.getShopLoginId(), shopSignInRequestDTO.getShopPassword())
         );
         return ShopSignInResponseDTO.builder()
                 .accessToken(jwtAuthenticationProvider.createToken(authentication))
-                .shop_login_id(authentication.getName())
+                .shopLoginId(authentication.getName())
                 .build();
     }
 }

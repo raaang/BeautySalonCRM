@@ -17,10 +17,10 @@ public class UserDetailsServiceImpl implements UserDetailsService {
     private SqlSession sqlSession;
 
     @Override
-    public UserDetails loadUserByUsername(String shop_login_id) throws UsernameNotFoundException {
+    public UserDetails loadUserByUsername(String shopLoginId) throws UsernameNotFoundException {
         UserDetailsImpl users = new UserDetailsImpl();
         try {
-            users = sqlSession.getMapper(ShopSignInMapper.class).getUserById(shop_login_id);
+            users = sqlSession.getMapper(ShopSignInMapper.class).getUserById(shopLoginId);
         } catch (SQLException e) {
             throw new UsernameNotFoundException("아이디 혹은 비밀번호를 잘못 입력하였습니다.");
         }

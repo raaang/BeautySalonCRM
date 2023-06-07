@@ -14,25 +14,25 @@ import lombok.ToString;
 @ToString
 public class EmployeeModifyRequestDTO {
     // 직원 id
-    private String employee_id;
+    private String employeeId;
 
     // 샵 id
-    private String shop_id;
+    private String shopId;
 
     // 직원 근무 상태 (w : 재직 / l : 휴직 / r : 퇴직)
-    private char employee_work_status;
+    private char employeeWorkStatus;
 
     // 직원 성별 (여자 : f / 남자 : m)
-    private char employee_gender;
+    private char employeeGender;
 
     // 직원 이름
-    private String employee_name;
+    private String employeeName;
 
     // 직원 전화번호
-    private String employee_phone;
+    private String employeePhone;
 
     // 직원 주소
-    private String employee_address;
+    private String employeeAddress;
 
     // 메모
     private String memo;

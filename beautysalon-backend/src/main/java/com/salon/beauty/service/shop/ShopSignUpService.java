@@ -7,5 +7,5 @@ public interface ShopSignUpService {
     public boolean signUp(ShopSignUpRequestDTO shopSignUpRequestDTO) throws Exception;
 
     // 샵 로그인 아이디 중복 조회
-    public boolean shopCheckId(String shop_login_id) throws Exception;
+    public boolean shopCheckId(String shopLoginId) throws Exception;
 }

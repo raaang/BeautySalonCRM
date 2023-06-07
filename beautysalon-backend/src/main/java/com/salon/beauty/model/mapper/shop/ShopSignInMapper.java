@@ -10,5 +10,5 @@ import java.sql.SQLException;
  */
 @Mapper
 public interface ShopSignInMapper {
-    public UserDetailsImpl getUserById(String shop_login_id) throws SQLException;
+    public UserDetailsImpl getUserById(String shopLoginId) throws SQLException;
 }

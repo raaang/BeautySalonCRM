@@ -11,8 +11,8 @@ import java.util.List;
 
 @ToString
 public class UserDetailsImpl implements UserDetails {
-    private String shop_login_id;
-    private String shop_password;
+    private String shopLoginId;
+    private String shopPassword;
     List<GrantedAuthority> roles = new ArrayList<>();
 
     public UserDetailsImpl() {
@@ -21,8 +21,8 @@ public class UserDetailsImpl implements UserDetails {
 
     public UserDetailsImpl(UserDetailsImpl users) {
         super();
-        this.shop_login_id = users.shop_login_id;
-        this.shop_password = users.shop_password;
+        this.shopLoginId = users.shopLoginId;
+        this.shopPassword = users.shopPassword;
         roles.add(new SimpleGrantedAuthority("ROLE_USER"));
     }
 
@@ -33,12 +33,12 @@ public class UserDetailsImpl implements UserDetails {
 
     @Override
     public String getPassword() {
-        return shop_password;
+        return shopPassword;
     }
 
     @Override
     public String getUsername() {
-        return shop_login_id;
+        return shopLoginId;
     }
 
     @Override

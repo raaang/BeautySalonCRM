@@ -5,14 +5,14 @@
 <mapper namespace="com.salon.beauty.model.mapper.shop.ShopModifyMapper">
     <update id="shopModify" parameterType="ShopModifyRequestDTO">
         UPDATE SHOP
-        SET SHOP_LOGIN_ID=#{shop_login_id}
-            ,SHOP_PASSWORD=#{shop_password}
-            ,SHOP_NAME=#{shop_name}
-            ,SHOP_PHONE=#{shop_phone}
-            ,SHOP_CEO=#{shop_ceo}
-            ,SHOP_CEO_PHONE=#{shop_ceo_phone}
-            ,POINT_ACCUMULATION_RATE=#{point_accumulation_rate}
-            ,POINT_ACCUMULATION_CONDITION=#{point_accumulation_condition}
-        WHERE SHOP_ID=#{shop_id}
+        SET SHOP_LOGIN_ID=#{shopLoginId}
+            ,SHOP_PASSWORD=#{shopPassword}
+            ,SHOP_NAME=#{shopName}
+            ,SHOP_PHONE=#{shopPhone}
+            ,SHOP_CEO=#{shopCeo}
+            ,SHOP_CEO_PHONE=#{shopCeoPhone}
+            ,POINT_ACCUMULATION_RATE=#{pointAccumulationRate}
+            ,POINT_ACCUMULATION_CONDITION=#{pointAccumulationCondition}
+        WHERE SHOP_ID=#{shopId}
     </update>
 </mapper>

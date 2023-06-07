@@ -14,23 +14,23 @@ import lombok.ToString;
 @ToString
 public class ShopInfoResponseDTO {
     // 샵 로그인 아이디
-    private String shop_login_id;
+    private String shopLoginId;
 
     // 샵 이름
-    private String shop_name;
+    private String shopName;
 
     // 샵 전화번호
-    private String shop_phone;
+    private String shopPhone;
 
     // 샵 대표 이름
-    private String shop_ceo;
+    private String shopCeo;
 
     // 샵 대표 전화번호
-    private String shop_ceo_phone;
+    private String shopCeoPhone;
 
     // 포인트 적립율
-    private float point_accumulation_rate;
+    private float pointAccumulationRate;
 
     // 포인트 적립 조건
-    private String point_accumulation_condition;
+    private String pointAccumulationCondition;
 }
