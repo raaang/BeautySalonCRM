@@ -28,8 +28,9 @@ const btnDivLayout = css`
   text-align: center;
 `;
 const RegisterReservationLayout = css`
-  width: 100%;
-  padding: 20px 200px;
+  width: 1000px;
+  /* padding: 20px 0px; */
+  margin: 30 auto 60;
   display: flex;
   flex-direction: column;
   gap: 70px;
