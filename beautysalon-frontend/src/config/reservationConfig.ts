@@ -34,3 +34,10 @@ export const reservationDetailsConfig = [
     placeholder: '요청사항을 작성해주세요.',
   },
 ];
+
+export const reservationConfigData = {
+  timeSelect: ['14시', '00분', '18시', '00분'],
+  optionList: ['남자', '펌', '다운 펌'],
+  money: '35000',
+  request: '예쁘게 잘라주세요.',
+};
