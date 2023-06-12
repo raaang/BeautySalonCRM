@@ -2,7 +2,7 @@
 import { css, jsx } from '@emotion/react';
 import React, { useState } from 'react';
 import { AgGridReact } from 'ag-grid-react';
-import { ColDef } from 'ag-grid-community';
+import { ColDef, RowNode } from 'ag-grid-community';
 import 'ag-grid-community/styles/ag-grid.css';
 import 'ag-grid-community/styles/ag-theme-alpine.css';
 import { ORANGE1, MAUVE1, MAUVE2, ORANGE2, GRAY1, GRAY2 } from '../../constants/color';
@@ -14,26 +14,38 @@ interface Props {
   fontSize?: string;
 }
 function Table({ row, col, fontSize = '9' }: Props) {
-  const gridOptions = {
-    defaultColDef: {
-      editable: true,
-      enableRowGroup: true,
-      enablePivot: true,
-      enableValue: true,
-      sortable: true,
-      resizable: true,
-      //   filter: true,
-      flex: 1,
-      minWidth: 100,
-    },
-    suppressRowClickSelection: true,
-    groupSelectsChildren: true,
-    // debug: true,
-    rowSelection: 'multiple',
-    rowGroupPanelShow: 'always',
-    pivotPanelShow: 'always',
-    pagination: true,
+  const onGridReady = function (event: any) {
+    console.log(event.api);
+    event.api.sizeColumnsToFit();
   };
+  // const getRowHeight = function (params: any) {
+  //   console.log(params);
+  //   return 100
+  //     ;
+  // };
+  const defaultColdef = {
+    editable: true,
+    sortable: true,
+    minWidth: 100,
+    filter: true,
+    flex: 1,
+    floatingFilter: true,
+    //   checkboxSelection: true,
+
+    // 행 사이즈 자동 조절
+    autoHeight: false,
+    cellStyle: { 'white-space': 'normal' },
+  };
+  const [defaultcol, setDefaultcol] = useState(defaultColdef);
+  const onRowClicked = function (event: any) {
+    console.log(event);
+    defaultColdef.autoHeight = true;
+    setDefaultcol(defaultColdef);
+    console.log(event.api.gridOptionsService.gridOptions.defaultColDef.autoHeight);
+    console.log(event.rowIndex);
+    onGridReady(event);
+  };
+
   return (
     <div
       css={css`
@@ -62,19 +74,13 @@ function Table({ row, col, fontSize = '9' }: Props) {
         `}
         rowData={row}
         columnDefs={col}
-        defaultColDef={{
-          editable: true,
-          sortable: true,
-          minWidth: 100,
-          filter: true,
-          flex: 1,
-          floatingFilter: true,
-          //   checkboxSelection: true,
-        }}
+        defaultColDef={defaultcol}
         pagination={true}
         paginationAutoPageSize={true}
-        // onGridReady={onGridReady}
-				rowSelection={'multiple'}
+        rowSelection={'multiple'}
+        onGridReady={onGridReady}
+        // getRowHeight={getRowHeight}
+        onRowClicked={onRowClicked} // row클릭시 데이터 출력
       ></AgGridReact>
     </div>
   );
