@@ -1,18 +1,19 @@
 /** @jsx jsx */
-import { css, jsx } from '@emotion/react';
+import { CSSObject, css, jsx } from '@emotion/react';
 import React from 'react';
 import Text from '../common/text/text';
 
 interface InputContainerProps {
-  title: string | undefined;
+  title?: string | undefined;
   children: React.ReactChild;
+	style?: CSSObject;
 }
 
 function InputContainer(props: InputContainerProps) {
-  const { title, children } = props;
+  const { title, children, style } = props;
 
   return (
-    <div css={containerStyle}>
+    <div css={[containerStyle, style]}>
       {title ? <Text type="title" value={title} /> : null}
 
       {children}

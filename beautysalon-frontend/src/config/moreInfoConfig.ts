@@ -174,3 +174,14 @@ export const operationHistoryConfig = [
     ],
   },
 ];
+
+// 회원 등록
+export const registerMember = [
+  { id: 'member_name', title: '이름', type: 'text', placeholder: '이름을 입력해주세요.' },
+  { id: 'member_sex', title: '성별', type: 'radio', placeholderList: ['남성', '여성'] },
+  { id: 'member_address', title: '주소', type: 'text', placeholder: '주소를 입력해주세요.' },
+  { id: 'member_phone', title: '휴대폰 번호', type: 'number', placeholder: '휴대폰 번호를 입력해주세요.' },
+  { id: 'member_sms_check', title: 'SMS 수신 여부', type: 'radio', placeholderList: ['수신 동의', '수신 거절'] },
+  { id: 'member_family_num', title: '패밀리 번호', type: 'number', placeholder: '패밀리 번호를 조회해주세요.' },
+  { id: 'member_memo', title: '메모', type: 'textarea', placeholder: '직원 메모를 입력해주세요.' },
+];
