@@ -11,10 +11,11 @@ interface InputProps {
   placeholder: string;
   value?: any;
   detailsComponent?: boolean;
+  disable?: boolean;
 }
 
 function Input(props: InputProps) {
-  const { inputType, title, placeholder, value, defaultValue, detailsComponent = false } = props;
+  const { inputType, title, placeholder, value, defaultValue, detailsComponent = false, disable = false } = props;
 
   const typeStyle = inputType === 'small' ? smallLabelStyle : null;
 
@@ -31,6 +32,7 @@ function Input(props: InputProps) {
           placeholder={placeholder}
           value={value}
           defaultValue={defaultValue}
+          disabled={disable}
         />
       </label>
     </div>

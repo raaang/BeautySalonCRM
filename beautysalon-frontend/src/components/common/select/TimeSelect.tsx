@@ -8,10 +8,11 @@ interface TimeProps {
   title: string;
   placeholder: string[];
   detailsComponent?: boolean;
+  disable?: boolean;
 }
 
 const TimeSelect = (props: TimeProps) => {
-  const { title, placeholder, detailsComponent = false } = props;
+  const { title, placeholder, detailsComponent = false, disable = false } = props;
 
   const hourList = Array.from({ length: 24 }, (_, n) => String(n).padStart(2, '0'));
   const minuteList = Array.from({ length: 12 }, (_, n) => String(n * 5).padStart(2, '0'));
@@ -21,13 +22,33 @@ const TimeSelect = (props: TimeProps) => {
       <p css={inputTitleStyle}>{title}</p>
       <div css={selectListStyle}>
         <div css={timeStyle}>
-          <Select placeholder={placeholder[0]} options={hourList} detailsComponent={detailsComponent}></Select>
-          <Select placeholder={placeholder[1]} options={minuteList} detailsComponent={detailsComponent}></Select>
+          <Select
+            placeholder={placeholder[0]}
+            options={hourList}
+            detailsComponent={detailsComponent}
+            disable={disable}
+          ></Select>
+          <Select
+            placeholder={placeholder[1]}
+            options={minuteList}
+            detailsComponent={detailsComponent}
+            disable={disable}
+          ></Select>
         </div>
         <span>~</span>
         <div css={timeStyle}>
-          <Select placeholder={placeholder[2]} options={hourList} detailsComponent={detailsComponent}></Select>
-          <Select placeholder={placeholder[3]} options={minuteList} detailsComponent={detailsComponent}></Select>
+          <Select
+            placeholder={placeholder[2]}
+            options={hourList}
+            detailsComponent={detailsComponent}
+            disable={disable}
+          ></Select>
+          <Select
+            placeholder={placeholder[3]}
+            options={minuteList}
+            detailsComponent={detailsComponent}
+            disable={disable}
+          ></Select>
         </div>
       </div>
     </div>

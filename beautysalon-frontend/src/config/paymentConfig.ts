@@ -1,6 +1,17 @@
 // 직원 등록
 export const paymentModalConfig = [
   {
+    title: '예약 시간',
+    type: 'timeSelect',
+    placeholderList: ['11시', '00분', '14시', '00분'],
+  },
+  {
+    title: '예약자',
+    type: 'select',
+    placeholder: '예약자',
+    optionList: ['홍길동', '홍길동2'],
+  },
+  {
     title: '담당자',
     type: 'select',
     placeholder: '담당자',
@@ -40,3 +51,12 @@ export const paymentModalConfig = [
   },
   { type: 'plus' },
 ];
+
+export const reservationConfigData = {
+  customer: '김정호',
+  manager: '홍길동',
+  timePlacehoder: ['12시', '00분', '16시', '00분'],
+  request: '예쁘게 잘라주세요.',
+  style: ['남자 / 펌 / 스왈로펌', '400000'],
+  money: '100000',
+};

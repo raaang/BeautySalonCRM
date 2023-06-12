@@ -1,6 +1,6 @@
 /** @jsx jsx */
 import { css, jsx } from '@emotion/react';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 // import InputContainer, { inputContainerStyle, smallInputContainerStyle } from '../inputContainer/inputContainer';
 import { shopInfoConfig } from '../../config/shopAccountConfig';
 import Input from '../common/input/input';
@@ -9,16 +9,31 @@ import Select from '../common/select/select';
 import Modal, { modalState } from '../common/modal/modal';
 import Text from '../common/text/text';
 import TimeSelect from '../common/select/TimeSelect';
-import { paymentModalConfig } from '../../config/paymentConfig';
+import { paymentModalConfig, reservationConfigData } from '../../config/paymentConfig';
 import { ORANGE2, ORANGE1, MAUVE1 } from '../../constants/color';
 import { FaPlusCircle } from 'react-icons/fa';
 import { DatePicker } from 'antd';
 import type { DatePickerProps } from 'antd';
 
-function PaymentModal() {
+interface ReservationProps {
+  customer: string;
+  manager: string;
+  timePlacehoder: string[];
+  request: string;
+  style: string[];
+  money: string;
+}
+interface Props {
+  isReservation?: boolean;
+  reservationData?: ReservationProps;
+  isModify?: boolean;
+}
+
+function PaymentModal({ isReservation = true, reservationData = reservationConfigData, isModify = true }: Props) {
   const [open, setOpen] = useState<boolean>(true); // 샵 정보 수정 모달
   const [modalOpen, setModalOpen] = useState<boolean>(false); // 샵 정보 수정 완료 확인 모달
   const [modalState, setModalState] = useState<modalState>({ title: '', body: '' });
+  const [disable, setDisable] = useState<boolean>(false); // '결제 수정' 모달일 경우 disabled 처리용
 
   const onChange: DatePickerProps['onChange'] = (date, dateString) => {
     console.log(date, dateString);
@@ -28,6 +43,10 @@ function PaymentModal() {
     setModalOpen(!modalOpen);
     setModalState({ title: '결제가 완료되었습니다!', body: '' });
   };
+
+  useEffect(() => {
+    if (isModify) setDisable(true);
+  }, []);
 
   return open ? (
     <div>
@@ -47,23 +66,40 @@ function PaymentModal() {
           </h3> */}
           <div css={dateLayout}>
             <Text value={'결제 날짜'} type="label" />
-            <DatePicker onChange={onChange} />
+            {disable ? <DatePicker onChange={onChange} disabled /> : <DatePicker onChange={onChange} />}
           </div>
           {paymentModalConfig.map((item, idx) => {
             if (item.type === 'timeSelect') {
-              //   return <TimeSelect key={idx} title={item.title} placeholder={item.placeholderList!} />;
+              const placeholderValue = isReservation ? reservationData.timePlacehoder : item.placeholderList;
+              if (isReservation)
+                return <TimeSelect key={idx} title={item.title!} placeholder={placeholderValue!} disable={disable} />;
             } else if (item.type === 'select') {
-              return (
-                <div css={selectLayout}>
-                  <div>
-                    <Text value={item.title!} type="label" />
+              let selectPlaceholder = item.placeholder;
+              if (isReservation) {
+                if (item.title === '담당자') selectPlaceholder = reservationData.manager;
+                if (item.title === '예약자') selectPlaceholder = reservationData.customer;
+              }
+
+              if (item.title === '담당자' || isReservation) {
+                return (
+                  <div css={selectLayout}>
+                    <div>
+                      <Text value={item.title!} type="label" />
+                    </div>
+                    <div>
+                      <Select
+                        key={idx}
+                        placeholder={selectPlaceholder!}
+                        options={item.optionList!}
+                        disable={disable}
+                      ></Select>
+                    </div>
                   </div>
-                  <div>
-                    <Select key={idx} placeholder={item.placeholder!} options={item.optionList!}></Select>
-                  </div>
-                </div>
-              );
+                );
+              }
             } else if (item.type === 'style') {
+              const placeholderValue1 = isReservation ? reservationData.style[0] : item.placeholder1;
+              const placeholderValue2 = isReservation ? reservationData.style[1] : item.placeholder2;
               return (
                 <div css={styleLayout}>
                   <div css={styleContentLayout}>
@@ -71,8 +107,8 @@ function PaymentModal() {
                       <Text value={item.title!} type="label" />
                     </div>
                     <div css={styleInputLayout}>
-                      <Input key={idx} inputType={'big'} placeholder={item.placeholder1!} />
-                      <Input key={idx} inputType={'big'} placeholder={item.placeholder2!} />
+                      <Input key={idx} inputType={'big'} placeholder={placeholderValue1!} disable={disable} />
+                      <Input key={idx} inputType={'big'} placeholder={placeholderValue2!} disable={disable} />
                     </div>
                   </div>
                   <div css={styleContentLayout}>
@@ -83,6 +119,7 @@ function PaymentModal() {
                             key={idx}
                             placeholder={selectItem.placeholder!}
                             options={selectItem.optionList!}
+                            disable={disable}
                           ></Select>
                         );
                       })}
@@ -138,10 +175,11 @@ function PaymentModal() {
                 </div>
               );
             } else if (item.type === 'textarea') {
+              const placeholderValue = isReservation ? reservationData.request : item.placeholder;
               return (
                 <div css={textareaItemStyle} key={idx}>
                   <Text value={item.title!} type="label" />
-                  <textarea css={textareaStyle} placeholder={item.placeholder}></textarea>
+                  <textarea css={textareaStyle} placeholder={placeholderValue!} disabled={disable}></textarea>
                 </div>
               );
             } else if (item.type === 'method') {

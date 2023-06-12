@@ -8,6 +8,7 @@ import Account from './pages/shop/account/index';
 import ShopInfo from './pages/shop/shopInfo';
 import Family from './pages/family';
 import RegisterReservation from './pages/reservation/registerReservation';
+import Reservation from './pages/reservation/reservation';
 
 function App() {
   return (
@@ -17,8 +18,9 @@ function App() {
         <Route path="/shop" element={<ShopInfo />} />
         <Route path="/family" element={<Family />} />
         <Route path="/moreInfo" element={<MoreInfo />} />
-				<Route path="/member"element={<Member />} />
-        <Route path="/reservation" element={<RegisterReservation />} />
+				<Route path="/member" element={<Member />} />
+        <Route path="/registerReservation" element={<RegisterReservation />} />
+        <Route path="/reservation" element={<Reservation />} />
       </Routes>
     </BrowserRouter>
   );

@@ -8,15 +8,22 @@ interface SelectProps {
   options: string[];
   value?: any;
   detailsComponent?: boolean;
+  disable?: boolean;
 }
 
 function Select(props: SelectProps) {
-  const { placeholder, options, value, detailsComponent = false } = props;
+  const { placeholder, options, value, detailsComponent = false, disable = false } = props;
 
   let detailsStyle;
   if (detailsComponent) detailsStyle = detailsComponentStyle;
   return (
-    <select css={[selectStyle, detailsStyle]} name={placeholder} id={placeholder} defaultValue={value}>
+    <select
+      css={[selectStyle, detailsStyle]}
+      name={placeholder}
+      id={placeholder}
+      defaultValue={value}
+      disabled={disable}
+    >
       <option css={disabledSelectStyle} value="" disabled selected>
         {placeholder}
       </option>
