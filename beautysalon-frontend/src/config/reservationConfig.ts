@@ -35,6 +35,14 @@ export const reservationDetailsConfig = [
   },
 ];
 
+
+export const reservationConfigData = {
+  timeSelect: ['14시', '00분', '18시', '00분'],
+  optionList: ['남자', '펌', '다운 펌'],
+  money: '35000',
+  request: '예쁘게 잘라주세요.',
+};
+
 export const reservationSelectConfig = [
   {
     type: 'select',
@@ -184,3 +192,4 @@ export const rowData = [
     요청사항: '단발로 자르고 싶어요.',
   },
 ];
+

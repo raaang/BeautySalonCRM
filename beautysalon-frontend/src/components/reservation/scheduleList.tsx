@@ -11,13 +11,25 @@ import HistoryLayout from '../common/history/historyLayout';
 import History from '../common/history/history';
 import { reservationListConfig } from '../../config/reservationConfig';
 
-function ScheduleList() {
-  const [historyData, setHistoryData] = useState(reservationListConfig);
+interface Props {
+  managerScheduleList?: ListProps[];
+}
+
+interface ListProps {
+  startTime: string;
+  endTime: string;
+  operationName: string;
+  name: string;
+}
+
+function ScheduleList({ managerScheduleList = reservationListConfig }: Props) {
+  const [historyData, setHistoryData] = useState<ListProps[]>(managerScheduleList);
+
   return (
     <div>
       <span css={spanStyle}>{`Today 2018.02.03`}</span>
       <hr css={hrStyle} />
-      {historyData ? (
+      {historyData.length ? (
         historyData.map((item, idx) => {
           return (
             <div>
@@ -35,7 +47,7 @@ function ScheduleList() {
           );
         })
       ) : (
-        <div>
+        <div css={noDataStyle}>
           <p>
             예약 건이 없습니다.<br></br>상단의 '에약 하기' 버튼을 통해 예약해주세요.
           </p>
@@ -44,6 +56,12 @@ function ScheduleList() {
     </div>
   );
 }
+
+const noDataStyle = css`
+  color: rgba(0, 0, 0, 0.3);
+  text-align: center;
+  margin-top: 50px;
+`;
 
 const spanStyle = css`
   font-weight: bold;

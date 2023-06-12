@@ -3,21 +3,40 @@ import { css, jsx } from '@emotion/react';
 import React, { useState } from 'react';
 import Button from '../common/button/button';
 import { MAUVE2, ORANGE1 } from '../../constants/color';
-import { reservationDetailsConfig } from '../../config/reservationConfig';
+import { reservationDetailsConfig, reservationConfigData } from '../../config/reservationConfig';
 import TimeSelect from '../common/select/TimeSelect';
 import Text from '../common/text/text';
 import Input from '../common/input/input';
 import Select from '../common/select/select';
 
-function DetailsArticle() {
+interface Props {
+  isModify?: boolean;
+  reservationData?: ListProps;
+}
+
+interface ListProps {
+  timeSelect: string[];
+  optionList: string[];
+  money: string;
+  request: string;
+}
+
+function DetailsArticle({ isModify = false, reservationData = reservationConfigData }: Props) {
   const [configData, setConfigData] = useState(reservationDetailsConfig);
+  const timeSelectPlacehoder = isModify ? reservationData.timeSelect : configData[0].placeholderList;
+  const stylePlaceholder1 = isModify ? reservationData.optionList[0] : configData[1].placeholder;
+  const stylePlaceholder2 = isModify ? reservationData.optionList[1] : configData[2].placeholder;
+  const stylePlaceholder3 = isModify ? reservationData.optionList[2] : configData[3].placeholder;
+  const moneyPlacehoder = isModify ? reservationData.money : configData[4].placeholder!;
+  const requestPlacehoder = isModify ? reservationData.request : configData[5].placeholder;
+
   return (
     <div css={flexLayout}>
       <div css={TimeSelectLayout}>
         <TimeSelect
           key={'reservation_time'}
           title={configData[0].title}
-          placeholder={configData[0].placeholderList!}
+          placeholder={timeSelectPlacehoder!}
           detailsComponent={true}
         />
       </div>
@@ -29,19 +48,19 @@ function DetailsArticle() {
           <div css={selectLayout}>
             <Select
               key={'reservataion_style'}
-              placeholder={configData[1].placeholder!}
+              placeholder={stylePlaceholder1!}
               options={configData[1].optionList!}
               detailsComponent={true}
             />
             <Select
               key={'reservataion_style'}
-              placeholder={configData[2].placeholder!}
+              placeholder={stylePlaceholder2!}
               options={configData[2].optionList!}
               detailsComponent={true}
             />
             <Select
               key={'reservataion_style'}
-              placeholder={configData[3].placeholder!}
+              placeholder={stylePlaceholder3!}
               options={configData[3].optionList!}
               detailsComponent={true}
             />
@@ -53,7 +72,7 @@ function DetailsArticle() {
           key={'reservation_defaultMoney'}
           inputType={'big'}
           title={configData[4].title}
-          placeholder={configData[4].placeholder!}
+          placeholder={moneyPlacehoder}
           detailsComponent={true}
         />
       </div>
@@ -62,7 +81,7 @@ function DetailsArticle() {
           <Text value={configData[5].title} type="label" />
         </div>
 
-        <textarea css={textareaStyle} placeholder={configData[5].placeholder}></textarea>
+        <textarea css={textareaStyle} placeholder={requestPlacehoder}></textarea>
       </div>
     </div>
   );
