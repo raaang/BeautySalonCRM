@@ -2,7 +2,8 @@
 import { css, jsx } from '@emotion/react';
 import React, { useState } from 'react';
 // import InputContainer, { inputContainerStyle, smallInputContainerStyle } from '../inputContainer/inputContainer';
-import { registerShopStyleConfig } from '../../config/shopAccountConfig';
+import { registerShopStyleConfig, shopStyleTypeConfig } from '../../config/shopAccountConfig';
+import StyleTypeList from '../shop/styleTypeList';
 import Input from '../common/input/input';
 import ModalInput from '../common/modal/modalInput';
 import Select from '../common/select/select';
@@ -29,23 +30,7 @@ function RegisterShopStyle() {
         nextBtn={() => onClickNext()}
       >
         <div css={inputContainerStyle}>
-          {registerShopStyleConfig.map((item, idx) => {
-            if (item.type === 'select') {
-              return (
-                <div css={inputItemStyle} key={idx}>
-                  <Text value={item.title} type="label" />
-                  <div css={selectStyle}>
-                    <Select placeholder={item.placeholder!} options={item.optionList!} />
-                  </div>
-                  <div css={selectStyle}>
-                    <Input key={idx} inputType={'small'} placeholder={item.placeholder!} />
-                  </div>
-                </div>
-              );
-            } else {
-              return <Input key={idx} inputType={'big'} title={item.title} placeholder={item.placeholder!} />;
-            }
-          })}
+          <StyleTypeList title="대분류" styleList={shopStyleTypeConfig[0].list[0].list} />
         </div>
       </ModalInput>
 
@@ -100,3 +85,21 @@ const textareaStyle = css`
 `;
 
 export default RegisterShopStyle;
+
+// {registerShopStyleConfig.map((item, idx) => {
+//   if (item.type === 'select') {
+//     return (
+//       <div css={inputItemStyle} key={idx}>
+//         <Text value={item.title} type="label" />
+//         <div css={selectStyle}>
+//           <Select placeholder={item.placeholder!} options={item.optionList!} />
+//         </div>
+//         <div css={selectStyle}>
+//           <Input key={idx} inputType={'small'} placeholder={item.placeholder!} />
+//         </div>
+//       </div>
+//     );
+//   } else {
+//     return <Input key={idx} inputType={'big'} title={item.title} placeholder={item.placeholder!} />;
+//   }
+// })}
