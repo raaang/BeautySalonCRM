@@ -18,19 +18,21 @@ function RegisterShopStyle() {
 
   const onClickNext = () => {
     setModalOpen(!modalOpen);
-    setModalState({ title: '스타일이 등록되었습니다!', body: '' });
+    setModalState({ title: '스타일이 저장되었습니다!', body: '' });
   };
 
   return open ? (
     <div>
       <ModalInput
         title={undefined}
-        nextBtnText={'스타일 등록하기'}
+        nextBtnText={'확인'}
         chngShowing={() => setOpen(!open)}
         nextBtn={() => onClickNext()}
       >
         <div css={inputContainerStyle}>
           <StyleTypeList title="대분류" styleList={shopStyleTypeConfig[0].list[0].list} />
+          <StyleTypeList title="중분류" styleList={shopStyleTypeConfig[0].list[0].list} />
+          <StyleTypeList title="소분류" styleList={shopStyleTypeConfig[0].list[0].list} />
         </div>
       </ModalInput>
 
@@ -54,13 +56,10 @@ const selectStyle = css`
 `;
 
 const inputContainerStyle = css`
-  width: 547px;
   box-sizing: border-box;
 
   display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 40px;
+  gap: 50px;
 `;
 
 const textareaItemStyle = css`
