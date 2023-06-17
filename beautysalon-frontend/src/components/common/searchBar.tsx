@@ -6,16 +6,24 @@ interface SearchBarProps {
   value: string;
   placeholder: string;
   setValue: React.Dispatch<React.SetStateAction<string>>;
-	style?: CSSObject;
+  style?: CSSObject;
+  width?: number;
 }
 
 function searchBar(props: SearchBarProps) {
-  const { value, placeholder, setValue } = props;
+  const { value, placeholder, setValue, width } = props;
   return (
-    <div css={containerStyle}>
+    <div
+      css={[
+        containerStyle,
+        css`
+          width: ${width};
+        `,
+      ]}
+    >
       <input
         type="text"
-        css={inputStyle}
+        css={[inputStyle]}
         value={value}
         placeholder={placeholder}
         onChange={(e) => setValue(e.target.value)}
