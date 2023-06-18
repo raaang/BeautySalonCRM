@@ -17,4 +17,18 @@
         FROM EMPLOYEE
         WHERE SHOP_ID=#{shopId}
     </select>
+
+    <select id="getEmployeeDetail" parameterType="EmployeeGetDetailDTO" resultType="EmployeeDetailResponseDTO">
+        SELECT EMPLOYEE_ID AS employeeId
+             ,SHOP_ID AS shopId
+             ,EMPLOYEE_WORK_STATUS AS employeeWorkStatus
+             ,EMPLOYEE_GENDER AS employeeGender
+             ,EMPLOYEE_NAME AS employeeName
+             ,EMPLOYEE_PHONE AS employeePhone
+             ,EMPLOYEE_ADDRESS AS employeeAddress
+             ,MEMO AS memo
+        FROM EMPLOYEE
+        WHERE SHOP_ID=#{shopId}
+          AND EMPLOYEE_ID=#{employeeId}
+    </select>
 </mapper>

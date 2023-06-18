@@ -1,7 +1,9 @@
 package com.salon.beauty.service.shop;
 
+import com.salon.beauty.model.dto.dto.shop.EmployeeGetDetailDTO;
 import com.salon.beauty.model.dto.dto.shop.EmployeeGetListDTO;
 import com.salon.beauty.model.dto.dto.shop.EmployeeListPageDTO;
+import com.salon.beauty.model.dto.request.shop.EmployeeDetailResponseDTO;
 import com.salon.beauty.model.dto.response.shop.EmployeeListResponseDTO;
 import com.salon.beauty.model.mapper.shop.EmployeeRetrieveMapper;
 import com.salon.beauty.model.mapper.shop.ShopIdMapper;
@@ -30,9 +32,7 @@ public class EmployeeRetrieveServiceImpl implements EmployeeRetrieveService {
         String shopId = sqlSession.getMapper(ShopIdMapper.class).shopId(SecurityContextHolder.getContext().getAuthentication().getName());
         employeeListPageDTO.setShopId(shopId);
         employeeListPageDTO.setPageSize(pageSize);
-        System.out.println("안녕 " + employeeListPageDTO.toString());
         int totalPageNum = sqlSession.getMapper(EmployeeRetrieveMapper.class).getTotalPage(employeeListPageDTO);
-        System.out.println("토탈 " + totalPageNum);
         employeeListResponseDTO.setTotalPageNum(totalPageNum);
         employeeListResponseDTO.setPageSize(pageSize);
 
@@ -41,5 +41,14 @@ public class EmployeeRetrieveServiceImpl implements EmployeeRetrieveService {
         employeeGetListDTO.setShopId(shopId);
         employeeListResponseDTO.setEmployeeList(sqlSession.getMapper(EmployeeRetrieveMapper.class).getEmployeeList(employeeGetListDTO));
         return employeeListResponseDTO;
+    }
+
+    @Override
+    public EmployeeDetailResponseDTO employeeDetail(String employeeId) throws Exception {
+        EmployeeGetDetailDTO employeeGetDetailDTO = new EmployeeGetDetailDTO();
+        employeeGetDetailDTO.setEmployeeId(employeeId);
+        String shopId = sqlSession.getMapper(ShopIdMapper.class).shopId(SecurityContextHolder.getContext().getAuthentication().getName());
+        employeeGetDetailDTO.setShopId(shopId);
+        return sqlSession.getMapper(EmployeeRetrieveMapper.class).getEmployeeDetail(employeeGetDetailDTO);
     }
 }

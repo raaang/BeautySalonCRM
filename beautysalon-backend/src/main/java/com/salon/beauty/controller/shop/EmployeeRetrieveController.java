@@ -25,4 +25,9 @@ public class EmployeeRetrieveController {
     public ResponseEntity<?> getEmployeeList(@RequestParam(defaultValue = "0", required = false, name = "pagenum") int pageNum, @RequestParam(defaultValue = "7", required = false, name = "pagesize") int pageSize) throws Exception {
         return ResponseEntity.status(200).body(employeeRetrieveService.employeeList(pageNum, pageSize));
     }
+
+    @GetMapping("/detail")
+    public ResponseEntity<?> getEmployeeList(@RequestParam(name = "employeeid") String employeeId) throws Exception {
+        return ResponseEntity.status(200).body(employeeRetrieveService.employeeDetail(employeeId));
+    }
 }
