@@ -37,8 +37,9 @@ public class EmployeeRetrieveServiceImpl implements EmployeeRetrieveService {
         employeeListResponseDTO.setPageSize(pageSize);
 
         EmployeeGetListDTO employeeGetListDTO = new EmployeeGetListDTO();
-        employeeGetListDTO.setPageNum(pageNum);
+        employeeGetListDTO.setPageNum(pageSize*pageNum);
         employeeGetListDTO.setShopId(shopId);
+        employeeGetListDTO.setPageSize(pageSize);
         employeeListResponseDTO.setEmployeeList(sqlSession.getMapper(EmployeeRetrieveMapper.class).getEmployeeList(employeeGetListDTO));
         return employeeListResponseDTO;
     }

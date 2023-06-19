@@ -16,6 +16,8 @@
                ,EMPLOYEE_WORK_STATUS AS employeeWorkStatus
         FROM EMPLOYEE
         WHERE SHOP_ID=#{shopId}
+        ORDER BY EMPLOYEE_NAME
+        LIMIT #{pageSize} OFFSET #{pageNum}
     </select>
 
     <select id="getEmployeeDetail" parameterType="EmployeeGetDetailDTO" resultType="EmployeeDetailResponseDTO">

@@ -12,4 +12,7 @@ public class EmployeeGetListDTO {
 
     // 페이지 번호
     public int pageNum;
+
+    // 한 페이지에 포함된 직원 수
+    public int pageSize;
 }
