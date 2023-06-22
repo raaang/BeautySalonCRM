@@ -6,4 +6,6 @@ export const MAUVE3 = '#ECE0FD';
 export const PURPLE = '#8A40F0';
 export const GRAY1 = '#D9D9D9';
 export const GRAY2 = '#EEEEEE';
+export const GREEN1 = '#E0F8D1';
+export const BLUE1 = '#536DFE';
 export const ERROR = '#FF0000';

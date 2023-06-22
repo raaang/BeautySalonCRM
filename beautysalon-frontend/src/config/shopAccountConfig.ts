@@ -78,3 +78,47 @@ export const registerShopStyleConfig = [
   },
   { id: 'shop_style_small', title: '스타일 소분류', type: 'text', placeholder: '스타일 소분류' },
 ];
+
+export const shopStyleTypeConfig = [
+  {
+    title: '커트',
+    list: [
+      {
+        title: '남자',
+        list: [
+          '댄디 컷',
+          '시스루 컷',
+          '댄디 컷',
+          '시스루 컷',
+          '댄디 컷',
+          '시스루 컷',
+          '댄디 컷',
+          '시스루 컷',
+          '댄디 컷',
+          '시스루 컷',
+
+          '댄디 컷',
+          '시스루 컷',
+        ],
+      },
+      {
+        title: '여자',
+        list: ['시스루 컷'],
+      },
+    ],
+  },
+  {
+    title: '파마',
+    list: [
+      {
+        title: '남자',
+        list: ['다운 펌', '스왈로 펌'],
+      },
+      {
+        title: '여자',
+
+        list: ['시스루 뱅', '히피 펌'],
+      },
+    ],
+  },
+];
