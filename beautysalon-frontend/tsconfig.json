@@ -8,7 +8,7 @@
     "types": ["@emotion/react/types/css-prop"],
     "module": "esnext",
     "moduleResolution": "Node",
-    "target": "es5",
+    "target": "es2015",
     "strict": true,
     "resolveJsonModule": true,
     "baseUrl": ".",
@@ -25,7 +25,7 @@
     "compilerOptions": {
       "module": "commonjs",
       "moduleResolution": "Node",
-      "target": "es5",
+      "target": "es2015",
       "esModuleInterop": true
     }
   }
