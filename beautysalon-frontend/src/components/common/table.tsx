@@ -1,12 +1,12 @@
 /** @jsx jsx */
 import { css, jsx } from '@emotion/react';
-import React, { useState } from 'react';
+import React, { useCallback, useRef, useState } from 'react';
 import { AgGridReact } from 'ag-grid-react';
 import { ColDef, RowNode } from 'ag-grid-community';
 import 'ag-grid-community/styles/ag-grid.css';
 import 'ag-grid-community/styles/ag-theme-alpine.css';
 import { ORANGE1, MAUVE1, MAUVE2, ORANGE2, GRAY1, GRAY2 } from '../../constants/color';
-import { Pagination } from 'antd';
+import SearchBar from '../../components/common/searchBar';
 
 interface Props {
   row: object[];
@@ -18,13 +18,14 @@ function Table({ row, col, fontSize = '9' }: Props) {
     console.log(event.api);
     event.api.sizeColumnsToFit();
   };
-  // const getRowHeight = function (params: any) {
-  //   console.log(params);
-  //   return 100
-  //     ;
-  // };
+  const getRowHeight = function (param: any) {
+    if (param.node.rowPinned) {
+      return 30;
+    }
+    return 24;
+  };
   const defaultColdef = {
-    editable: true,
+    editable: false,
     sortable: true,
     minWidth: 100,
     filter: true,
@@ -33,17 +34,16 @@ function Table({ row, col, fontSize = '9' }: Props) {
     //   checkboxSelection: true,
 
     // 행 사이즈 자동 조절
-    autoHeight: false,
+    autoHeight: true,
     cellStyle: { 'white-space': 'normal' },
   };
   const [defaultcol, setDefaultcol] = useState(defaultColdef);
   const onRowClicked = function (event: any) {
-    console.log(event);
-    defaultColdef.autoHeight = true;
-    setDefaultcol(defaultColdef);
+    // console.log(event);
+
     console.log(event.api.gridOptionsService.gridOptions.defaultColDef.autoHeight);
     console.log(event.rowIndex);
-    onGridReady(event);
+    // onGridReady(event);
   };
 
   return (
@@ -76,11 +76,14 @@ function Table({ row, col, fontSize = '9' }: Props) {
         columnDefs={col}
         defaultColDef={defaultcol}
         pagination={true}
-        paginationAutoPageSize={true}
+        // paginationAutoPageSize={true}
+        paginationPageSize={10}
         rowSelection={'multiple'}
-        onGridReady={onGridReady}
+        // onGridReady={onGridReady}
         // getRowHeight={getRowHeight}
         onRowClicked={onRowClicked} // row클릭시 데이터 출력
+        suppressHorizontalScroll={true} // 가로 스크롤 허용
+        detailCellRenderer={SearchBar}
       ></AgGridReact>
     </div>
   );
