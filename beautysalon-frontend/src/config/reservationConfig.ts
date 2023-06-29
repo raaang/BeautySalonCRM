@@ -35,7 +35,6 @@ export const reservationDetailsConfig = [
   },
 ];
 
-
 export const reservationConfigData = {
   timeSelect: ['14시', '00분', '18시', '00분'],
   optionList: ['남자', '펌', '다운 펌'],
@@ -74,7 +73,14 @@ export const columnData = [
   { field: '전화번호', flex: 0.6 },
   { field: '스타일', flex: 0.2 },
   { field: '담당자', flex: 0.3 },
-  { field: '요청사항', flex: 1 },
+  {
+    field: '요청사항',
+    flex: 1,
+
+    // autoHeight: true,
+
+    // cellStyle: { 'white-space': 'normal' },
+  },
 ];
 
 // 회원 상세 정보 - 패밀리 정보 데이터
@@ -192,4 +198,3 @@ export const rowData = [
     요청사항: '단발로 자르고 싶어요.',
   },
 ];
-

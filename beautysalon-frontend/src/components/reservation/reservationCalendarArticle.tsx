@@ -14,14 +14,13 @@ function ReservationCalendarArticle() {
 }
 
 const ArticleLayout = css`
-  border: 1px solid black;
-  width: 30%;
+  width: 350px;
 
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  gap: 50px;
+  gap: 40px;
 `;
 
 export default ReservationCalendarArticle;

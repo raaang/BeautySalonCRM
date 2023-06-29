@@ -49,8 +49,7 @@ const settingDivLayout = css`
   justify-content: space-between;
 `;
 const ArticleLayout = css`
-  width: 70%;
-  border: 1px solid black;
+  width: 1200px;
 
   display: flex;
   flex-direction: column;
