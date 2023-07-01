@@ -65,7 +65,6 @@ export const reservationSelectConfig = [
   },
 ];
 
-// column 값
 export const columnData = [
   { field: '결제', flex: 0.3 },
   { field: '예약 시간', flex: 0.4 },
@@ -76,14 +75,9 @@ export const columnData = [
   {
     field: '요청사항',
     flex: 1,
-
-    // autoHeight: true,
-
-    // cellStyle: { 'white-space': 'normal' },
   },
 ];
 
-// 회원 상세 정보 - 패밀리 정보 데이터
 export const rowData = [
   {
     결제: '결제완료',
