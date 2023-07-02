@@ -45,12 +45,12 @@ const columns: ColumnsType<DataType> = [
   { title: '담당자', dataIndex: 'manager', key: 'manager' },
   { title: '결제금액', dataIndex: 'money', key: 'money' },
   { title: '포인트 (패밀리/개인)', dataIndex: 'point', key: 'point' },
-  {
-    title: 'Action',
-    dataIndex: '',
-    key: 'x',
-    render: () => <a>삭제</a>,
-  },
+  // {
+  //   title: 'Action',
+  //   dataIndex: '',
+  //   key: 'x',
+  //   render: () => <a>삭제</a>,
+  // },
 ];
 
 const data: DataType[] = [
@@ -65,7 +65,7 @@ const data: DataType[] = [
     request:
       '염색할 색을 정하지 못해 추천해 주셨으면 합니다. 애쉬를 생각하고 있는데 현재 탈색 2번에 애쉬블루로 염색했었는데 색이 거의 빠진 상태입니다. 제 머리에 어떤 색이 가능한지 궁금합니다. 또 관리 방법도 알려주셨으면 좋겠습니다.',
     money: '15000',
-    point: '1000',
+    point: '1000 / 20000',
   },
   {
     key: 2,
@@ -78,7 +78,7 @@ const data: DataType[] = [
     request:
       '염색할 색을 정하지 못해 추천해 주셨으면 합니다. 애쉬를 생각하고 있는데 현재 탈색 2번에 애쉬블루로 염색했었는데 색이 거의 빠진 상태입니다. 제 머리에 어떤 색이 가능한지 궁금합니다. 또 관리 방법도 알려주셨으면 좋겠습니다.',
     money: '15000',
-    point: '1000',
+    point: '1000 / 30000',
   },
   {
     key: 3,

@@ -56,7 +56,8 @@ function ReservationTable({ data, columns }: Props) {
       dataSource={rowData}
       size="large"
       font-size="small"
-      //   scroll={{ y: 1200 }}
+      scroll={{ y: 529 }}
+      tableLayout="auto" // auto : default값
     />
   );
 }
