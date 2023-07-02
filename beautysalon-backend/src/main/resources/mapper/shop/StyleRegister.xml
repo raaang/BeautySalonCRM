@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.salon.beauty.model.mapper.shop.StyleRegisterMapper">
+    <insert id="mainStyleRegister" parameterType="MainStyleRegisterRequestDTO">
+        INSERT INTO MAIN_STYLE(
+                             SHOP_ID
+                            ,STYLE_NAME
+                            ,STYLE_ORDER
+        )
+        SELECT #{shopId}, #{styleName}, count(*)+1
+        FROM MAIN_STYLE
+        WHERE SHOP_ID=#{shopId};
+    </insert>
+
+    <insert id="middleStyleRegister" parameterType="MiddleStyleRegisterRequestDTO">
+        INSERT INTO MIDDLE_STYLE(
+                               SHOP_ID
+                              ,MAIN_STYLE_ID
+                              ,STYLE_NAME
+                              ,STYLE_ORDER
+        )
+        SELECT #{shopId}, #{mainStyleId}, #{styleName}, count(*)+1
+        FROM MIDDLE_STYLE
+        WHERE SHOP_ID=#{shopId} AND MAIN_STYLE_ID=#{mainStyleId};
+    </insert>
+
+    <insert id="subStyleRegister" parameterType="SubStyleRegisterRequestDTO">
+        INSERT INTO SUB_STYLE(
+                               SHOP_ID
+                              ,MIDDLE_STYLE_ID
+                              ,STYLE_NAME
+                              ,STYLE_ORDER
+        )
+        SELECT #{shopId}, #{middleStyleId}, #{styleName}, count(*)+1
+        FROM SUB_STYLE
+        WHERE SHOP_ID=#{shopId} AND MIDDLE_STYLE_ID=#{middleStyleId};
+    </insert>
+</mapper>
