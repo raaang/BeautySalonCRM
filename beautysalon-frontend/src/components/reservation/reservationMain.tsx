@@ -14,7 +14,7 @@ function ReservationMain() {
 }
 
 const ReservationLayout = css`
-  width: 100%;
+  width: 1900px;
   padding: 20px 200px;
   display: flex;
   gap: 50px;
