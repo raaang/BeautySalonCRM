@@ -7,9 +7,27 @@ import SearchBar from '../common/searchBar';
 import Table from '../common/table';
 import { ERROR } from '../../constants/color';
 import Modal, { modalState } from '../common/modal/modal';
+import { ColumnsType } from 'antd/es/table';
 
 interface CreateFamilyProps {
   tabIdx: number;
+}
+
+interface FamilyTableType {
+  key: React.Key;
+  name: string;
+  sex: string;
+  phone: string;
+  address: string;
+  delete: string;
+}
+
+interface UserTableType {
+  key: React.Key;
+  name: string;
+  sex: string;
+  phone: string;
+  address: string;
 }
 
 function createFamily(props: CreateFamilyProps) {
@@ -23,42 +41,76 @@ function createFamily(props: CreateFamilyProps) {
     body: '',
   });
 
-  const [familyRow] = useState(
-    Array.from({ length: 3 }, (_, n) => ({
-      이름: `홍길동${n}`,
-      성별: '남자',
-      번호: `010-1111-111${n}`,
-      주소: '서울시 서울 종로구 세종대로 175',
-      삭제: '삭제하기',
+  // const [familyRow] = useState(
+  //   Array.from({ length: 3 }, (_, n) => ({
+  //     이름: `홍길동${n}`,
+  //     성별: '남자',
+  //     번호: `010-1111-111${n}`,
+  //     주소: '서울시 서울 종로구 세종대로 175',
+  //     삭제: '삭제하기',
+  //   })),
+  // );
+  // const [familyCol] = useState([
+  //   { field: '이름', flex: 1 },
+  //   { field: '성별', flex: 1 },
+  //   { field: '번호', flex: 1 },
+  //   { field: '주소', flex: 2 },
+  //   { field: '삭제', flex: 1 },
+  // ]);
+
+  const [familyRow] = useState<FamilyTableType[]>(
+    Array.from({ length: 8 }, (_, n) => ({
+      key: n.toString(),
+      name: `홍길동${n}`,
+      sex: '남자',
+      phone: `010-1111-111${n}`,
+      address: '서울시 서울 종로구 효자로 12',
+      delete: '삭제하기',
     })),
   );
-  const [familyCol] = useState([
-    { field: '이름', flex: 1 },
-    { field: '성별', flex: 1 },
-    { field: '번호', flex: 1 },
-    { field: '주소', flex: 2 },
-    { field: '삭제', flex: 1 },
+  const [familyCol] = useState<ColumnsType<FamilyTableType>>([
+    { title: '이름', dataIndex: 'name' },
+    { title: '성별', dataIndex: 'sex' },
+    { title: '번호', dataIndex: 'phone' },
+    { title: '주소', dataIndex: 'address' },
+    { title: '삭제', dataIndex: 'delete' },
   ]);
 
-  const [userRow] = useState(
+  // const [userRow] = useState(
+  //   Array.from({ length: 8 }, (_, n) => ({
+  //     이름: `홍길동${n}`,
+  //     성별: '남자',
+  //     번호: `010-1111-111${n}`,
+  //     주소: '서울시 서울 종로구 효자로 12',
+  //   })),
+  // );
+  // const [userCol] = useState([
+  //   {
+  //     field: '이름',
+  //     flex: 1,
+  //     headerCheckboxSelection: true,
+  //     checkboxSelection: true,
+  //     showDisabledCheckboxes: true,
+  //   },
+  //   { field: '성별', flex: 1 },
+  //   { field: '번호', flex: 1 },
+  //   { field: '주소', flex: 2 },
+  // ]);
+
+  const [userRow] = useState<UserTableType[]>(
     Array.from({ length: 8 }, (_, n) => ({
-      이름: `홍길동${n}`,
-      성별: '남자',
-      번호: `010-1111-111${n}`,
-      주소: '서울시 서울 종로구 효자로 12',
+      key: n.toString(),
+      name: `홍길동${n}`,
+      sex: '남자',
+      phone: `010-1111-111${n}`,
+      address: '서울시 서울 종로구 효자로 12',
     })),
   );
-  const [userCol] = useState([
-    {
-      field: '이름',
-      flex: 1,
-      headerCheckboxSelection: true,
-      checkboxSelection: true,
-      showDisabledCheckboxes: true,
-    },
-    { field: '성별', flex: 1 },
-    { field: '번호', flex: 1 },
-    { field: '주소', flex: 2 },
+  const [userCol] = useState<ColumnsType<UserTableType>>([
+    { title: '이름', dataIndex: 'name' },
+    { title: '성별', dataIndex: 'sex' },
+    { title: '번호', dataIndex: 'phone' },
+    { title: '주소', dataIndex: 'address' },
   ]);
 
   useEffect(() => {

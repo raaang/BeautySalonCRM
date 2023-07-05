@@ -6,6 +6,7 @@ import SearchBar from '../common/searchBar';
 import Table from './table';
 import { ORANGE1, ORANGE2 } from '../../constants/color';
 import Input from './input/input';
+import { ColumnsType } from 'antd/es/table';
 
 interface SearchContainerProps {
   title: string;
@@ -13,17 +14,30 @@ interface SearchContainerProps {
   chngShowing: () => void;
 }
 
+interface TableType {
+  key: React.Key;
+  name: string;
+}
+
 function SearchContainer(props: SearchContainerProps) {
   const { title, isFamily = false, chngShowing } = props;
 
   const [search, setSearch] = useState<string>('');
 
-  const [row] = useState(
+  // const [row] = useState(
+  //   Array.from({ length: 3 }, (_, n) => ({
+  //     이름: `홍길동${n}`,
+  //   })),
+  // );
+  // const [col] = useState([{ field: '이름', flex: 1 }]);
+
+  const [row] = useState<TableType[]>(
     Array.from({ length: 3 }, (_, n) => ({
-      이름: `홍길동${n}`,
+      key: n.toString(),
+      name: `홍길동${n}`,
     })),
   );
-  const [col] = useState([{ field: '이름', flex: 1 }]);
+  const [col] = useState<ColumnsType<TableType[]>>([{ title: '이름', dataIndex: 'name' }]);
 
   console.log(isFamily);
 
@@ -47,12 +61,7 @@ function SearchContainer(props: SearchContainerProps) {
               <p css={pointStyle}>1700p</p>
 
               <Text type="tableContent" value={'패밀리로 포인트를 얼만큼 옮길까요?'} />
-			        <input
-			          id="input"
-			          css={inputStyle}
-			          type={'number'}
-			          placeholder={'옮길 포인트를 입력해주세요.'}
-			        />
+              <input id="input" css={inputStyle} type={'number'} placeholder={'옮길 포인트를 입력해주세요.'} />
 
               <div css={btnContainerStyle}>
                 <button css={btnStyle} onClick={chngShowing}>
@@ -136,28 +145,28 @@ const pointStyle = css`
 
 const inputStyle = css`
   width: 100%;
-	margin: 10px 0 42px;
+  margin: 10px 0 42px;
   padding: 8px 20px;
 
   color: black;
-	background-color: ${ORANGE2};
+  background-color: ${ORANGE2};
   border: none;
   border-radius: 10px;
   outline: none;
 
-	font-weight: 400;
+  font-weight: 400;
   font-size: 14px;
   line-height: 17px;
 
-	::placeholder {
-		color: #666666;
-	}
+  ::placeholder {
+    color: #666666;
+  }
 
-	::-webkit-outer-spin-button,
-	::-webkit-inner-spin-button {
-	    -webkit-appearance: none;
-	    margin: 0;
-	}
+  ::-webkit-outer-spin-button,
+  ::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
 `;
 
 export default SearchContainer;
