@@ -5,12 +5,29 @@ import { MAUVE3, ORANGE1 } from '../../constants/color';
 import Text from '../common/text/text';
 import Table from '../common/table';
 import { DatePicker } from 'antd';
+import { ColumnsType } from 'antd/es/table';
 
 interface filterInterface {
 	name: string;
 	value: string | number;
 	type: string;
 	isEdit: boolean;
+}
+
+interface TableType {
+  key: React.Key;
+  name: string;
+  sex: string;
+  phone: string;
+	familyNo: string;
+	manager: string;
+	point: number[];
+	totalCost: string;
+	lastDate: [string, number];
+	createDate: string;
+	customerType: string;
+	edit: string;
+  delete: string;
 }
 
 function SearchMember() {
@@ -41,35 +58,67 @@ function SearchMember() {
     setFilterList([...tempList]);
   };
 
-  const [rowData, setRowData] = useState(
-    Array.from({ length: 20 }, (_, n) => ({
-      이름: '홍길동' + n,
-      성별: '남',
-      '휴대폰 번호': '01012345678',
-      '패밀리 번호': '000',
-      담당자: '김민수',
-      '잔여 포인트': [0, 0],
-      '누적 매출액': '40000',
-      '최근 시술일': ['2023-03-01', 3],
-      가입일: '2023-01-04',
-      '단골/신규': '단골',
-      수정: '수정',
-      삭제: '삭제',
+  // const [rowData, setRowData] = useState(
+  //   Array.from({ length: 20 }, (_, n) => ({
+  //     이름: '홍길동' + n,
+  //     성별: '남',
+  //     '휴대폰 번호': '01012345678',
+  //     '패밀리 번호': '000',
+  //     담당자: '김민수',
+  //     '잔여 포인트': [0, 0],
+  //     '누적 매출액': '40000',
+  //     '최근 시술일': ['2023-03-01', 3],
+  //     가입일: '2023-01-04',
+  //     '단골/신규': '단골',
+  //     수정: '수정',
+  //     삭제: '삭제',
+  //   })),
+  // );
+  // const [columnData, setColumnData] = useState([
+  //   { field: '이름', flex: 1 },
+  //   { field: '성별', flex: 1 },
+  //   { field: '휴대폰 번호', flex: 1.5 },
+  //   { field: '패밀리 번호', flex: 1 },
+  //   { field: '담당자', flex: 1 },
+  //   { field: '잔여 포인트', flex: 1 },
+  //   { field: '누적 매출액', flex: 1 },
+  //   { field: '최근 시술일', flex: 1 },
+  //   { field: '가입일', flex: 1 },
+  //   { field: '단골/신규', flex: 1 },
+  //   { field: '수정', flex: 0.2 },
+  //   { field: '삭제', flex: 0.2 },
+  // ]);
+	
+  const [rowData, setRowData] = useState<TableType[]>(
+    Array.from({ length: 8 }, (_, n) => ({
+      key: n.toString(),
+      name: '홍길동' + n,
+      sex: '남',
+      phone: '01012345678',
+      familyNo: '000',
+      manager: '김민수',
+      point: [0, 0],
+      totalCost: '40000',
+      lastDate: ['2023-03-01', 3],
+      createDate: '2023-01-04',
+      customerType: '단골',
+      edit: '수정',
+      delete: '삭제',
     })),
   );
-  const [columnData, setColumnData] = useState([
-    { field: '이름', flex: 1 },
-    { field: '성별', flex: 1 },
-    { field: '휴대폰 번호', flex: 1.5 },
-    { field: '패밀리 번호', flex: 1 },
-    { field: '담당자', flex: 1 },
-    { field: '잔여 포인트', flex: 1 },
-    { field: '누적 매출액', flex: 1 },
-    { field: '최근 시술일', flex: 1 },
-    { field: '가입일', flex: 1 },
-    { field: '단골/신규', flex: 1 },
-    { field: '수정', flex: 0.2 },
-    { field: '삭제', flex: 0.2 },
+  const [columnData, setColumnData] = useState<ColumnsType<TableType>>([
+    { title: '이름', dataIndex: 'name' },
+    { title: '성별', dataIndex: 'sex' },
+    { title: '번호', dataIndex: 'phone' },
+		{ title: '패밀리 번호', dataIndex: 'familyNo' },
+		{ title: '담당자', dataIndex: 'manager' },
+		{ title: '잔여 포인트', dataIndex: 'point' },
+		{ title: '누적 매출액', dataIndex: 'totalCost' },
+		{ title: '최근 시술일', dataIndex: 'lastDate' },
+		{ title: '가입일', dataIndex: 'createDate' },
+		{ title: '단골/신규', dataIndex: 'customerType' },
+		{ title: '수정', dataIndex: 'edit' },
+		{ title: '삭제', dataIndex: 'delete' },
   ]);
 
   return (

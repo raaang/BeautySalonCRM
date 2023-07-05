@@ -5,10 +5,35 @@ import Table from '../../common/table';
 import ArticleHeader from '../../../components/layout/articleHeader';
 import { familyRowData, familyColumnData, familyInfo } from '../../../config/moreInfoConfig';
 import Text from '../../../components/common/text/text';
+import { ColumnsType } from 'antd/es/table';
+
+interface TableType {
+  key: React.Key;
+  name: string;
+  age: string;
+  phone: string;
+  delete: string;
+}
 
 function FamilyInfoArticle() {
-  const [rowData] = useState(familyRowData);
-  const [columnDefs] = useState(familyColumnData);
+  // const [rowData] = useState(familyRowData);
+  // const [columnDefs] = useState(familyColumnData);
+
+  const [rowData] = useState<TableType[]>(
+    Array.from({ length: 8 }, (_, n) => ({
+      key: n.toString(),
+      name: '이필자',
+      age: '26',
+      phone: '01056781234',
+      delete: '삭제',
+    })),
+  );
+  const [columnDefs] = useState<ColumnsType<TableType>>([
+    { title: '이름', dataIndex: 'name' },
+    { title: '나이', dataIndex: 'age' },
+    { title: '휴대폰 번호', dataIndex: 'phone' },
+    { title: '삭제', dataIndex: 'delete' },
+  ]);
 
   return (
     <article css={articleLayout}>
