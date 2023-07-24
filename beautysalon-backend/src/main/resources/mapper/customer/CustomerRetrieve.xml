@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.salon.beauty.model.mapper.customer.CustomerRetrieveMapper">
+    <select id="getTotalPage" parameterType="CustomerListPageDTO" resultType="int">
+        SELECT CEIL(COUNT(*) / #{pageSize}) AS totalPageNum
+        FROM CUSTOMER
+        WHERE SHOP_ID=#{shopId}
+    </select>
+
+    <select id="getCustomerList" parameterType="CustomerGetListDTO" resultType="CustomerListDTO">
+        SELECT CUSTOMER_ID AS customerId
+                ,CUSOTMER_NAME AS customerName
+                ,CUSTOMER_PHONE1 AS customerPhone1
+                ,CUSTOMER_PHONE2 AS customerPhone2
+                ,CUSTOMER_SMS_YN AS customerSmsYn
+                ,CUSTOMER_MEMO AS customerMemo
+                ,CUSTOMER_POINT AS customerPoint
+                ,CUSTOMER_ADDRESS AS customerAddress
+                ,FAMILY_ID AS familyId
+                ,WORKER_ID AS workerId
+                ,SHOP_ID AS shopId
+        FROM CUSTOMER
+        WHERE SHOP_ID=#{shopId}
+        ORDER BY CUSTOMER_NAME
+        LIMIT #{pageSize} OFFSET #{pageNum}
+    </select>
+
+    <select id="getCustomerDetail" parameterType="CustomerGetDetailDTO" resultType="CustomerDetailResponseDTO">
+        SELECT CUSTOMER_ID AS customerId
+                ,CUSOTMER_NAME AS customerName
+                ,CUSTOMER_PHONE1 AS customerPhone1
+                ,CUSTOMER_PHONE2 AS customerPhone2
+                ,CUSTOMER_SMS_YN AS customerSmsYn
+                ,CUSTOMER_MEMO AS customerMemo
+                ,CUSTOMER_POINT AS customerPoint
+                ,CUSTOMER_ADDRESS AS customerAddress
+                ,FAMILY_ID AS familyId
+                ,WORKER_ID AS workerId
+                ,SHOP_ID AS shopId
+        FROM CUSTOMER
+        WHERE SHOP_ID=#{shopId}
+          AND CUSTOMER_ID=#{customerId}
+    </select>
+</mapper>
