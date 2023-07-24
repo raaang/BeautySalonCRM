@@ -9,6 +9,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+/**
+ * 예약 등록 요청을 처리하는 Controller
+ */
 @RequestMapping("/api/reservation/register")
 @RequiredArgsConstructor
 @Controller
