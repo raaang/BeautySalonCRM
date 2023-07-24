@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.salon.beauty.model.mapper.customer.CustomerModifyMapper">
+    <update id="customerModify" parameterType="CustomerModifyRequestDTO">
+        UPDATE CUSTOMER
+        SET CUSTOMER_NAME=#{customerName}
+        <if test='customerName != null  and customerName != ""'>
+            ,CUSTOMER_NAME = #{customerName}
+        </if>
+        <if test='customerPhone1 != null  and customerPhone1 != ""'>
+            ,CUSTOMER_PHONE1 = #{customerPhone1}
+        </if>
+        <if test='customerPhone2 != null  and customerPhone2 != ""'>
+            ,CUSTOMER_PHONE2 = #{customerPhone2}
+        </if>
+        <if test='customerSmsYn != null  and customerSmsYn != ""'>
+            ,CUSTOMER_SMS_YN = #{customerSmsYn}
+        </if>
+        <if test='customerMemo != null  and customerMemo != ""'>
+            ,CUSTOMER_MEMO = #{customerMemo}
+        </if>
+        <if test='customerAddress != null  and customerAddress != ""'>
+            ,CUSTOMER_ADDRESS = #{customerAddress}
+        </if>
+        <if test='familyId != null  and familyId != ""'>
+            ,FAMILY_ID = #{familyId}
+        </if>
+        <if test='workerId != null  and workerId != ""'>
+            ,WORKER_ID = #{workerId}
+        </if>
+        WHERE CUSTOMER_ID = #{customerId}
+    </update>
+</mapper>
