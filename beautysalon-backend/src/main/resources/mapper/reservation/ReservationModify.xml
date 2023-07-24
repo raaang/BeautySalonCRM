@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.salon.beauty.model.mapper.reservation.ReservationModifyMapper">
+    <update id="reservationModify" parameterType="ReservationModifyRequestDTO">
+        UPDATE RESERVATION
+        SET CUSTOMER_ID=#{customerId}
+          ,EMPLOYEE_ID=#{employeeId}
+          ,RESERVATION_DATE=#{dateTime}
+          ,RESERVATION_START=#{reservationStart}
+          ,RESERVATION_END=#{reservationEnd}
+          ,MAIN_STYLE_ID=#{mainStyleId}
+          ,MIDDLE_STYLE_ID=#{middleStyleId}
+          ,SUB_STYLE_ID=#{subStyleId}
+          ,PRICE=#{price}
+          ,REQUEST=#{request}
+        WHERE RESERVATION_ID=#{reservationId}
+    </update>
+</mapper>
